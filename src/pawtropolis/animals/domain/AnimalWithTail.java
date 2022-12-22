@@ -1,4 +1,4 @@
-package animals.domain;
+package pawtropolis.animals.domain;
 
 import java.time.LocalDate;
 
