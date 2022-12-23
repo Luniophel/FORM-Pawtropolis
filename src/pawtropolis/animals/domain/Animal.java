@@ -1,6 +1,7 @@
 package pawtropolis.animals.domain;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Animal {
 
@@ -66,5 +67,27 @@ public abstract class Animal {
 
     public void setHeight(double height) {
         this.height = height;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Animal animal = (Animal) o;
+        return age == animal.age
+                && Double.compare(animal.weight, weight) == 0
+                && Double.compare(animal.height, height) == 0
+                && Objects.equals(name, animal.name)
+                && Objects.equals(favoriteFood, animal.favoriteFood)
+                && Objects.equals(joinDate, animal.joinDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, favoriteFood, age, joinDate, weight, height);
     }
 }
