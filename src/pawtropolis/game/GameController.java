@@ -2,6 +2,7 @@ package pawtropolis.game;
 
 import pawtropolis.game.console.InputController;
 import pawtropolis.game.domain.Player;
+import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
 public class GameController {
@@ -24,9 +25,14 @@ public class GameController {
             System.out.print(">");
             input = InputController.readString();
 
-            /*
-             * Inserire qui la gestione degli altri comandi
-             */
+            switch (input){
+                case "look":
+                    currentRoom.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
+                    break;
+
+                //case "go "
+
+            }
 
 
             if (input.equals("exit")) {

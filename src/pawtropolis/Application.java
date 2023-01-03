@@ -1,5 +1,7 @@
 package pawtropolis;
 
+import pawtropolis.game.GameController;
+import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 import java.util.HashMap;
@@ -21,7 +23,6 @@ public class Application {
         adiacentRooms01.put(EST, room02);
         room01.setAdiacentRooms(adiacentRooms01);
 
-
         HashMap<Direction, Room> adiacentRooms02 = new HashMap<>();
         adiacentRooms02.put(SOUTH, room01);
         room02.setAdiacentRooms(adiacentRooms02);
@@ -36,10 +37,8 @@ public class Application {
         adiacentRooms04.put(EST, room06);
         room04.setAdiacentRooms(adiacentRooms04);
 
-        //System.out.println("Room04 è collegata a NORD alla stanza: " + room04.getAdiacentRooms().get("NORD").getName());
-        //System.out.println( adiacentRooms04.keySet().stream().collect(Collectors.toList())); //Vedo quali direzioni sono occupate
-
-        adiacentRooms04.forEach((k, v) -> System.out.println((k + ":" + v.getName())));
+        GameController gc = new GameController(room01, new Player("player01"));
+        gc.runGame();
 
     }
 }
