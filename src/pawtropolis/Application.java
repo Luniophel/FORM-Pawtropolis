@@ -20,7 +20,9 @@ public class Application {
 
         HashMap<Direction, Room> adiacentRooms01 = new HashMap<>();
         adiacentRooms01.put(SOUTH, room03);
-        adiacentRooms01.put(EST, room02);
+        adiacentRooms01.put(EAST, room02);
+        adiacentRooms01.put(NORTH, room04);
+
         room01.setAdiacentRooms(adiacentRooms01);
 
         HashMap<Direction, Room> adiacentRooms02 = new HashMap<>();
@@ -28,13 +30,13 @@ public class Application {
         room02.setAdiacentRooms(adiacentRooms02);
 
         HashMap<Direction, Room> adiancentRooms03 = new HashMap<>();
-        adiancentRooms03.put(EST, room01);
+        adiancentRooms03.put(EAST, room01);
         room03.setAdiacentRooms(adiancentRooms03);
 
         HashMap<Direction, Room> adiacentRooms04 = new HashMap<>();
         adiacentRooms04.put(NORTH, room01);
         adiacentRooms04.put(WEST, room03);
-        adiacentRooms04.put(EST, room06);
+        adiacentRooms04.put(EAST, room06);
         room04.setAdiacentRooms(adiacentRooms04);
 
         GameController gc = new GameController(room01, new Player("player01"));

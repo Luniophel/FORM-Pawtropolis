@@ -3,6 +3,6 @@ package pawtropolis.map.domain;
 public enum Direction {
     NORTH,
     SOUTH,
-    EST,
+    EAST,
     WEST
 }

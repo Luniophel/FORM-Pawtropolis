@@ -5,6 +5,8 @@ import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
+import static pawtropolis.map.domain.Direction.*;
+
 public class GameController {
 
     private final Room entry;
@@ -13,6 +15,16 @@ public class GameController {
     public GameController(Room entry, Player player) {
         this.entry = entry;
         this.player = player;
+    }
+
+    public void lookAround(Room room){
+        System.out.println("You're in " + room.getName());
+        room.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
+    }
+
+    public Room moveToAnotherRoom(Room room, Direction direction){
+        System.out.println("You want to go to the " + direction);
+        return room.getAdiacentRooms().get(direction);
     }
 
     public void runGame() {
@@ -26,17 +38,30 @@ public class GameController {
             input = InputController.readString();
 
             switch (input){
+
                 case "look":
-                    currentRoom.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
+                    lookAround(currentRoom);
                     break;
 
-                //case "go "
+                case "go north":
+                    currentRoom = moveToAnotherRoom(currentRoom, NORTH);
+                    break;
 
-            }
+                case "go east":
+                    currentRoom = moveToAnotherRoom(currentRoom, EAST);
+                    break;
 
+                case "go south":
+                    currentRoom = moveToAnotherRoom(currentRoom, SOUTH);
+                    break;
 
-            if (input.equals("exit")) {
-                gameEnded = true;
+                case "go west":
+                    currentRoom = moveToAnotherRoom(currentRoom, WEST);
+                    break;
+
+                default:
+                    System.out.println("Unknown command... try again.");
+
             }
         }
     }
