@@ -2,6 +2,9 @@ package pawtropolis;
 
 import pawtropolis.animals.ZooController;
 import pawtropolis.animals.domain.*;
+import pawtropolis.game.GameController;
+import pawtropolis.game.domain.Player;
+import pawtropolis.map.domain.Room;
 
 import java.time.LocalDate;
 
