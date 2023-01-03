@@ -5,7 +5,10 @@ import pawtropolis.animals.domain.*;
 import pawtropolis.map.domain.Room;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
 
@@ -44,6 +47,12 @@ public class Application {
         //room06.setAdiacentRooms("NORD",room04);
 
 
-        System.out.println("Room04 è collegata a NORD alla stanza: " + room04.getAdiacentRooms().get("NORD").getName());
+        //System.out.println("Room04 è collegata a NORD alla stanza: " + room04.getAdiacentRooms().get("NORD").getName());
+        //System.out.println( adiacentRooms04.keySet().stream().collect(Collectors.toList())); //Vedo quali direzioni sono occupate
+
+
+
+        adiacentRooms04.forEach((k, v) -> System.out.println((k + ":" + v.getName())));
+
     }
 }
