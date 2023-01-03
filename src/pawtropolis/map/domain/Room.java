@@ -13,7 +13,7 @@ public class Room {
     private String name;
     private Collection<Item> items;
     private Collection<Animal> animals;
-    private Map<String, Room> adiacentRooms;
+    private Map<Direction, Room> adiacentRooms;
 
     public Room(String name){
         this.name=name;
@@ -32,7 +32,7 @@ public class Room {
         this.animals = animals;
     }
 
-    public void setAdiacentRooms(Map<String, Room> adiacentRooms) {
+    public void setAdiacentRooms(Map<Direction, Room> adiacentRooms) {
         this.adiacentRooms = adiacentRooms;
     }
 
@@ -48,7 +48,7 @@ public class Room {
         return animals;
     }
 
-    public Map<String, Room> getAdiacentRooms() {
+    public Map<Direction, Room> getAdiacentRooms() {
         return adiacentRooms;
     }
 

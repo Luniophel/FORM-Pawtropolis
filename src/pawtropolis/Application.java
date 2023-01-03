@@ -2,6 +2,7 @@ package pawtropolis;
 
 import pawtropolis.animals.ZooController;
 import pawtropolis.animals.domain.*;
+import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
 import java.time.LocalDate;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static pawtropolis.map.domain.Direction.EST;
 
 public class Application {
 
@@ -21,37 +24,29 @@ public class Application {
         Room room05 = new Room("room05");
         Room room06 = new Room("room06");
 
-        HashMap<String, Room> adiacentRooms01 = new HashMap<>();
-        adiacentRooms01.put("SUD", room03);
-        adiacentRooms01.put("EST", room02);
+        HashMap<Direction, Room> adiacentRooms01 = new HashMap<>();
+        adiacentRooms01.put(Direction.SOUTH, room03);
+        adiacentRooms01.put(Direction.EST, room02);
         room01.setAdiacentRooms(adiacentRooms01);
 
 
-        HashMap<String, Room> adiacentRooms02 = new HashMap<>();
-        adiacentRooms02.put("SUD", room01);
+        HashMap<Direction, Room> adiacentRooms02 = new HashMap<>();
+        adiacentRooms02.put(Direction.SOUTH, room01);
         room02.setAdiacentRooms(adiacentRooms02);
 
-        HashMap<String, Room> adiancentRooms03 = new HashMap<>();
-        adiancentRooms03.put("EST", room01);
+        HashMap<Direction, Room> adiancentRooms03 = new HashMap<>();
+        adiancentRooms03.put(Direction.EST, room01);
         room03.setAdiacentRooms(adiancentRooms03);
 
-        HashMap<String, Room> adiacentRooms04 = new HashMap<>();
-        adiacentRooms04.put("NORD", room05);
-        adiacentRooms04.put("NORD", room01);
-        adiacentRooms04.put("OVEST", room03);
-        adiacentRooms04.put("EST", room06);
+        HashMap<Direction, Room> adiacentRooms04 = new HashMap<>();
+        adiacentRooms04.put(Direction.NORTH, room01);
+        adiacentRooms04.put(Direction.WEST, room03);
+        adiacentRooms04.put(Direction.EST, room06);
         room04.setAdiacentRooms(adiacentRooms04);
-
-        //room05.setAdiacentRooms("OVEST",room04);
-
-        //room06.setAdiacentRooms("NORD",room04);
-
 
         //System.out.println("Room04 è collegata a NORD alla stanza: " + room04.getAdiacentRooms().get("NORD").getName());
         //System.out.println( adiacentRooms04.keySet().stream().collect(Collectors.toList())); //Vedo quali direzioni sono occupate
-
-
-
+        
         adiacentRooms04.forEach((k, v) -> System.out.println((k + ":" + v.getName())));
 
     }
