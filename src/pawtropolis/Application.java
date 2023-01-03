@@ -2,74 +2,48 @@ package pawtropolis;
 
 import pawtropolis.animals.ZooController;
 import pawtropolis.animals.domain.*;
-import pawtropolis.game.GameController;
-import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Room;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class Application {
 
     public static void main(String[] args) {
-        // de-commentare per testare tutte le funzionalità della classe ZooController
-        // testZoo();
-    }
 
-    private static void testZoo() {
-        ZooController zooController = new ZooController();
+        Room room01 = new Room("room01");
+        Room room02 = new Room("room02");
+        Room room03 = new Room("room03");
+        Room room04 = new Room("room04");
+        Room room05 = new Room("room05");
+        Room room06 = new Room("room06");
 
-        zooController.addAnimal(new Lion("Simba", "mango", 3, LocalDate.now(), 10.9, 1.1, 0.5));
-        zooController.addAnimal(new Lion("Kimba", "caffè Kimbo", 5, LocalDate.now(), 13, 0.7, 0.9));
-        zooController.addAnimal(new Lion("Cane Fifone", "Torta di Marilù", 10, LocalDate.now(), 8, 1.1, 6.21));
+        HashMap<String, Room> adiacentRooms01 = new HashMap<>();
+        adiacentRooms01.put("SUD", room03);
+        adiacentRooms01.put("EST", room02);
+        room01.setAdiacentRooms(adiacentRooms01);
 
-        zooController.addAnimal(new Tiger("Man", "pizza", 30, LocalDate.now(), 80, 1.8, 0.3));
-        zooController.addAnimal(new Tiger("Tigro", "miele", 8, LocalDate.now(), 20, 1, 0.7));
-        zooController.addAnimal(new Tiger("Asdrubale", "carbonara", 27, LocalDate.now(), 70, 1.7, 1));
 
-        zooController.addAnimal(new Eagle("Piccione", "pane", 1, LocalDate.now(), 1, 0.2, 0.3));
-        zooController.addAnimal(new Eagle("Zazu", "marmellata", 9, LocalDate.now(), 2, 0.3, 0.5));
-        zooController.addAnimal(new Eagle("Daily Eagle", "hot dog", 50, LocalDate.now(), 30, 1, 2));
+        HashMap<String, Room> adiacentRooms02 = new HashMap<>();
+        adiacentRooms02.put("SUD", room01);
+        room02.setAdiacentRooms(adiacentRooms02);
 
-        AnimalWithTail animalWithLongestTail = zooController.getAnimalWithLongestTail();
-        System.out.println("Animal with longest tail: " + animalWithLongestTail.getName());
+        HashMap<String, Room> adiancentRooms03 = new HashMap<>();
+        adiancentRooms03.put("EST", room01);
+        room03.setAdiacentRooms(adiancentRooms03);
 
-        AnimalWithWings animalWithWidestWingspan = zooController.getAnimalWithWidestWingspan();
-        System.out.println("Animal with widest wingspan: " + animalWithWidestWingspan.getName());
+        HashMap<String, Room> adiacentRooms04 = new HashMap<>();
+        adiacentRooms04.put("NORD", room05);
+        adiacentRooms04.put("NORD", room01);
+        adiacentRooms04.put("OVEST", room03);
+        adiacentRooms04.put("EST", room06);
+        room04.setAdiacentRooms(adiacentRooms04);
 
-        Tiger tallestTiger = zooController.getTallestAnimalByClass(Tiger.class);
-        System.out.println("Tallest tiger: " + tallestTiger.getName());
+        //room05.setAdiacentRooms("OVEST",room04);
 
-        Tiger shortestTiger = zooController.getShortestAnimalByClass(Tiger.class);
-        System.out.println("Shortest tiger: " + shortestTiger.getName());
+        //room06.setAdiacentRooms("NORD",room04);
 
-        Lion tallestLion = zooController.getTallestAnimalByClass(Lion.class);
-        System.out.println("Tallest lion: " + tallestLion.getName());
 
-        Lion shortestLion = zooController.getShortestAnimalByClass(Lion.class);
-        System.out.println("Shortest lion: " + shortestLion.getName());
-
-        Eagle tallestEagle = zooController.getTallestAnimalByClass(Eagle.class);
-        System.out.println("Tallest eagle: " + tallestEagle.getName());
-
-        Eagle shortestEagle = zooController.getShortestAnimalByClass(Eagle.class);
-        System.out.println("Shortest eagle: " + shortestEagle.getName());
-
-        Tiger heaviestTiger = zooController.getHeaviestAnimalByClass(Tiger.class);
-        System.out.println("Heaviest tiger: " + heaviestTiger.getName());
-
-        Tiger lightestTiger = zooController.getLightestAnimalByClass(Tiger.class);
-        System.out.println("Lightest tiger: " + lightestTiger.getName());
-
-        Lion heaviestLion = zooController.getHeaviestAnimalByClass(Lion.class);
-        System.out.println("Heaviest lion: " + heaviestLion.getName());
-
-        Lion lightestLion = zooController.getLightestAnimalByClass(Lion.class);
-        System.out.println("Lightest lion: " + lightestLion.getName());
-
-        Eagle heaviestEagle = zooController.getHeaviestAnimalByClass(Eagle.class);
-        System.out.println("Heaviest eagle: " + heaviestEagle.getName());
-
-        Eagle lightestEagle = zooController.getLightestAnimalByClass(Eagle.class);
-        System.out.println("Lightest eagle: " + lightestEagle.getName());
+        System.out.println("Room04 è collegata a NORD alla stanza: " + room04.getAdiacentRooms().get("NORD").getName());
     }
 }

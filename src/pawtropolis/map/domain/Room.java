@@ -10,47 +10,50 @@ import java.util.Map;
 
 public class Room {
 
-    private String nome;
+    private String name;
     private Collection<Item> items;
     private Collection<Animal> animals;
-    private Map<Direction, Room> adjacentRooms;
+    private Map<String, Room> adiacentRooms;
 
-    public Room (String nome){
-        this.nome = nome;
-        this.items = null;
-        this.animals = null;
-        this.adjacentRooms = null;
+    public Room(String name){
+        this.name=name;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Collection<Item> getItems() {
-        return items;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setItems(Collection<Item> items) {
         this.items = items;
     }
 
-    public Collection<Animal> getAnimals() {
-        return animals;
-    }
 
     public void setAnimals(Collection<Animal> animals) {
         this.animals = animals;
     }
 
-    public Map<Direction, Room> getAdjacentRooms() {
-        return adjacentRooms;
+    public void setAdiacentRooms(Map<String, Room> adiacentRooms) {
+        this.adiacentRooms = adiacentRooms;
     }
 
-    public void setAdjacentRooms(Map<Direction, Room> adjacentRooms) {
-        this.adjacentRooms = adjacentRooms;
+    public String getName() {
+        return name;
     }
+
+    public Collection<Item> getItems() {
+        return items;
+    }
+
+    public Collection<Animal> getAnimals() {
+        return animals;
+    }
+
+    public Map<String, Room> getAdiacentRooms() {
+        return adiacentRooms;
+    }
+
+    /*
+     * Classe per rappresentare una stanza del gioco
+     *
+     */
 }
