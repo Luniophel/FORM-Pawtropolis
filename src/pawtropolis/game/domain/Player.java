@@ -4,7 +4,7 @@ public class Player {
 
     private String name;
     private int healthPoints;
-    private Bag playerBag;
+    private Bag playerBag = new Bag(1);
 
     public Player(String name){
         this.name = name;
