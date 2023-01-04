@@ -40,5 +40,5 @@ public class Application {
         GameController gc = new GameController(room01, new Player("player01"));
         gc.runGame();
 
-    }
+     }
 }

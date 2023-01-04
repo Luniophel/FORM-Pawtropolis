@@ -1,8 +1,12 @@
 package pawtropolis.game.console;
 
+import pawtropolis.map.domain.Direction;
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class InputController {
 
@@ -19,5 +23,13 @@ public class InputController {
             System.err.println("Error while reading user input");
             return "";
         }
+    }
+    public static boolean isValidDirection(final String direction) {
+        Direction[] directions= Direction.values();
+        for (Direction d: directions){
+            if (d.toString().equals(direction))
+                return true;
+        }
+        return false;
     }
 }
