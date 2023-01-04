@@ -4,9 +4,23 @@ public class Player {
 
     private String name;
     private int healthPoints;
+    private Bag playerBag;
 
     public Player(String name){
         this.name = name;
+    }
+
+    public Player(String name,Bag playerBag){
+        this.name = name;
+        this.playerBag = playerBag;
+    }
+
+    public Bag getPlayerBag() {
+        return playerBag;
+    }
+
+    public void setPlayerBag(Bag playerBag) {
+        this.playerBag = playerBag;
     }
 
     public String getName() {

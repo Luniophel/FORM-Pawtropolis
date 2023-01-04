@@ -1,10 +1,12 @@
 package pawtropolis.game;
 
 import pawtropolis.game.console.InputController;
+import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
+import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 public class GameController {
@@ -22,6 +24,16 @@ public class GameController {
         room.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
     }
 
+    public Item getItemFromRoom(Room room, String itemName){
+        for (Item i : room.getItems()) {
+            if (itemName.equalsIgnoreCase(i.getName())){
+                room.getItems().remove(i);
+                return i;
+            }
+        }
+        return null;
+    }
+
     public void runGame() {
         Room currentRoom = entry;
         boolean gameEnded = false;
@@ -33,21 +45,40 @@ public class GameController {
             input = InputController.readString().toUpperCase();
 
 
-            if (input.equalsIgnoreCase("LOOK"))
+            if (input.equalsIgnoreCase("LOOK")){
                 lookAround(currentRoom);
-                else if (Pattern.matches("GO [a-zA-Z]{3,5}?",input)) {
-                    String direction = input.substring(3);
-                    if (InputController.isValidDirection(direction)) {
-                        if (currentRoom.getAdiacentRooms().get(Direction.valueOf(direction)) == null) {
-                            System.out.println("You can't go to " + direction + " direction");
-                        }
-                        else {
-                            currentRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(direction));
-                            lookAround(currentRoom);
-                        }
+                continue;
+            }
+
+            if (Pattern.matches("GO [a-zA-Z]{3,5}?",input)) {
+                String direction = input.substring(3);
+                if (InputController.isValidDirection(direction)) {
+                    if (currentRoom.getAdiacentRooms().get(Direction.valueOf(direction)) == null) {
+                        System.out.println("You can't go to " + direction + " direction");
                     }
-                    else{System.out.println("Comando errato");}
+                    else {
+                        currentRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(direction));
+                        lookAround(currentRoom);
+                    }
                 }
+                else{
+                    System.out.println("Comando errato");
+                }
+                continue;
+            }
+
+            if (Pattern.matches("GET [a-zA-Z]{1,5}?",input)) {
+                String itemName = input.substring(4);
+                Item item = getItemFromRoom(currentRoom,itemName);
+                if (item == null) {
+                    System.out.println("Non trovo: " + itemName);
+                }
+                else {
+                    System.out.println("Hai preso l'item: " + item.getName());
+                }
+                continue;
+            }
+
             if (input.equalsIgnoreCase("EXIT")) {
                 gameEnded = true;
             }

@@ -1,9 +1,13 @@
 package pawtropolis;
 
 import pawtropolis.game.GameController;
+import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import static pawtropolis.map.domain.Direction.*;
 
@@ -17,6 +21,14 @@ public class Application {
         Room room04 = new Room("room04");
         Room room05 = new Room("room05");
         Room room06 = new Room("room06");
+
+        Item item01 = new Item("Bread", "lorem ipsum", 1);
+        Item item02 = new Item("Meat", "lorem ipsum", 1);
+
+        Collection<Item> room01Items = new ArrayList<>();
+        room01Items.add(item01);
+        room01Items.add(item02);
+        room01.setItems(room01Items);
 
         HashMap<Direction, Room> adiacentRooms01 = new HashMap<>();
         adiacentRooms01.put(SOUTH, room03);
