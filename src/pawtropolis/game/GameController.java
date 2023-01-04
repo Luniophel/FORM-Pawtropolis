@@ -17,6 +17,11 @@ public class GameController {
         this.player = player;
     }
 
+    public void lookAround(Room room){
+        System.out.println("You're in " + room.getName());
+        room.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
+    }
+
     public void runGame() {
         Room currentRoom = entry;
         boolean gameEnded = false;
@@ -25,20 +30,25 @@ public class GameController {
             String input;
             System.out.println("Where are you going to go?");
             System.out.print(">");
-            input = InputController.readString();
+            input = InputController.readString().toUpperCase();
 
 
-            if (input.equals("look"))
-                currentRoom.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
-                else if (Pattern.matches("go [a-zA-Z]{3,5}?",input)){
-                    if(InputController.isValidDirection(input.substring(3))){
-                        System.out.println("Direzione esatta");
+            if (input.equalsIgnoreCase("LOOK"))
+                lookAround(currentRoom);
+                else if (Pattern.matches("GO [a-zA-Z]{3,5}?",input)) {
+                    String direction = input.substring(3);
+                    if (InputController.isValidDirection(direction)) {
+                        if (currentRoom.getAdiacentRooms().get(Direction.valueOf(direction)) == null) {
+                            System.out.println("You can't go to " + direction + " direction");
+                        }
+                        else {
+                            currentRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(direction));
+                            lookAround(currentRoom);
+                        }
                     }
-                    else{
-                        System.out.println("Direzione errata");
-                    }
+                    else{System.out.println("Comando errato");}
                 }
-            if (input.equals("exit")) {
+            if (input.equalsIgnoreCase("EXIT")) {
                 gameEnded = true;
             }
         }
