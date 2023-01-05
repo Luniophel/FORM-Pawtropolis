@@ -21,82 +21,77 @@ public class GameController {
         this.player = player;
     }
 
-    public void lookAround(Room room){
-        System.out.println("You're in " + room.getName());
-        room.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
-    }
-
-    public void lookInsideBag(Bag bag){
-        for (Item i : bag.getItems()) {
-            System.out.println(i.getName());
-        }
-    }
-
-    public Item getItemFromRoom(Room room, String itemName){
-        for (Item i : room.getItems()) {
-            if (itemName.equalsIgnoreCase(i.getName())){
-                return i;
-            }
-        }
-        return null;
-    }
 
     public void runGame() {
         Room currentRoom = entry;
+        Room adiacentRoom = null;
+        RoomController roomController = new RoomController();
+        PlayerController playerController = new PlayerController(player);
+
         boolean gameEnded = false;
 
+        String input;
+        String[] command;
+
         while(!gameEnded) {
-            String input;
+
             System.out.println("Where are you going to go?");
             System.out.print(">");
+
             input = InputController.readString().toUpperCase();
+            command =InputController.splitCommand();
 
-
-            if (input.equalsIgnoreCase("LOOK")){
-                lookAround(currentRoom);
+            //LOOK COMMAND
+            if (input.equalsIgnoreCase("LOOK")) {
+                roomController.lookAround(currentRoom);
                 continue;
             }
 
-            if (Pattern.matches("GO [a-zA-Z]{3,5}?",input)) {
-                String direction = input.substring(3);
-                if (InputController.isValidDirection(direction)) {
-                    if (currentRoom.getAdiacentRooms().get(Direction.valueOf(direction)) == null) {
-                        System.out.println("You can't go to " + direction + " direction");
-                    }
-                    else {
-                        currentRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(direction));
-                        lookAround(currentRoom);
-                    }
-                }
-                else{
-                    System.out.println("Comando errato");
-                }
+            //BAG COMMAND
+            if (input.equalsIgnoreCase("BAG")) {
+                playerController.showBagContent();
                 continue;
             }
 
-            if (Pattern.matches("GET [a-zA-Z]{1,5}?",input)) {
-
-                String itemName = input.substring(4);
-                Item item = getItemFromRoom(currentRoom,itemName);
-
-                if (item == null) {
-                    System.out.println("Non trovo: " + itemName);
-                }
-                else {
-                    if (item.getRequiredSlot() > player.getPlayerBag().getAvailableSlots()){
-                        System.out.println("Not enough free slots for item: " + item.getName());
+            //GO COMMAND
+            if ( (command.length>1) && (command[1].equalsIgnoreCase("GO")) {
+                if (InputController.isValidDirection(command[2])) {
+                    adiacentRoom = roomController.GetAdiacentRoom(currentRoom,command[2]);
+                    if (adiacentRoom != null) {
+                        currentRoom = adiacentRoom;
+                        roomController.lookAround(currentRoom);
+                        continue;
                     }
-                    else {
-                        System.out.println("Hai preso l'item: " + item.getName());
-                        currentRoom.getItems().remove(item);
-                        player.getPlayerBag().getItems().add(item);
-                        player.getPlayerBag().setAvailableSlots(player.getPlayerBag().getAvailableSlots() - 1);
-                        lookInsideBag(player.getPlayerBag());
+                    else{
+                        System.out.println("There is no room at " + command[2]);
+                        continue;
                     }
                 }
-                continue;
+
+                System.out.printlm("Unrecognized command");
             }
 
+
+            //GET COMMAND
+            if ( (command.length>1) && (command[1].equalsIgnoreCase("GET")) {
+                String itemName = InputController.joinCommand(command,1);
+                Item itemToGet = roomController.getItem(itemToGet);
+                if (itemToGet != null){
+                    if (playerController.isThereEnoughSlotsInBag(itemToGet)){
+                        playerController.addItemtoBag(itemToGet);
+                        roomController.removeItemfromRoom(itemToGet)
+                        continue;
+                    }
+                    else{
+                        System.out.printl("You can't get the " + itemName );
+                        System.out.println("There is not enough space in the bag");
+                        continue;
+                    }
+                    System.out.println("There is no " + itemName + " in the room");
+                }
+            }
+
+            //EXIT COMMAND
             if (input.equalsIgnoreCase("EXIT")) {
                 gameEnded = true;
             }

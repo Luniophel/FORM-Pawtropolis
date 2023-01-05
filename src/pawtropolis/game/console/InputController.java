@@ -6,6 +6,7 @@ import pawtropolis.map.domain.Direction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.List;
 
 public class InputController {
@@ -24,6 +25,21 @@ public class InputController {
             return "";
         }
     }
+
+    public static String[] splitCommand(String command){
+            String str = "abc,defg,hi,jklm";
+            return command.split(" ");
+
+    }
+
+    public static String joinCommand(String[] command, int position){
+        String joinedString;
+        for(String s : command){
+            joinedString=String.join(s);
+        }
+        return joinedString;
+    }
+
     public static boolean isValidDirection(final String direction) {
         Direction[] directions= Direction.values();
         for (Direction d: directions){
