@@ -1,11 +1,15 @@
 package pawtropolis.game;
 
 import pawtropolis.game.console.InputController;
+
 import pawtropolis.game.domain.Player;
-import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
+import pawtropolis.map.domain.Direction;
 import static pawtropolis.map.domain.Direction.*;
+
+import pawtropolis.game.domain.Action;
+import static pawtropolis.game.domain.Action.*;
 
 public class GameController {
 
@@ -17,51 +21,78 @@ public class GameController {
         this.player = player;
     }
 
-    public void lookAround(Room room){
-        System.out.println("You're in " + room.getName());
-        room.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
-    }
-
-    public Room moveToAnotherRoom(Room room, Direction direction){
-        System.out.println("You want to go to the " + direction);
-        return room.getAdiacentRooms().get(direction);
-    }
-
     public void runGame() {
         Room currentRoom = entry;
+
+        PlayerController playerController = new PlayerController(player);
+
         boolean gameEnded = false;
 
+        String input;
+        String[] command;
+
         while(!gameEnded) {
-            String input;
+
             System.out.println("Where are you going to go?");
             System.out.print(">");
-            input = InputController.readString();
 
-            switch (input){
+            input = InputController.readString().toUpperCase();
+            command = input.split(" ", 2);
 
-                case "look":
-                    lookAround(currentRoom);
-                    break;
+            //LOOK COMMAND
+            if (input.equalsIgnoreCase("LOOK")) {
+                playerController.lookAround(currentRoom);
+                continue;
+            }
 
-                case "go north":
-                    currentRoom = moveToAnotherRoom(currentRoom, NORTH);
-                    break;
+            //BAG COMMAND
+            if (input.equalsIgnoreCase("BAG")) {
+                playerController.showBagContent();
+                continue;
+            }
 
-                case "go east":
-                    currentRoom = moveToAnotherRoom(currentRoom, EAST);
-                    break;
+            //GO COMMAND
+            if ( (command.length>1) && (command[0].equalsIgnoreCase("GO")) ) {
+                if (InputController.isValidDirection(command[1])) {
+                    Room targetRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(command[1]));
+                    if (targetRoom != null) {
+                        currentRoom = targetRoom;
+                        playerController.lookAround(currentRoom);
+                        continue;
+                    }
+                    else{
+                        System.out.println("There is no room at " + command[1]);
+                        continue;
+                    }
+                }
 
-                case "go south":
-                    currentRoom = moveToAnotherRoom(currentRoom, SOUTH);
-                    break;
+                System.out.println("Unrecognized command");
+            }
 
-                case "go west":
-                    currentRoom = moveToAnotherRoom(currentRoom, WEST);
-                    break;
+            //GET COMMAND
+            /*
+            if ( (command.length>1) && (command[1].equalsIgnoreCase("GET")) {
+                String itemName = InputController.joinCommand(command,1);
+                Item itemToGet = roomController.getItem(itemToGet);
+                if (itemToGet != null){
+                    if (playerController.isThereEnoughSlotsInBag(itemToGet)){
+                        playerController.addItemtoBag(itemToGet);
+                        roomController.removeItemfromRoom(itemToGet)
+                        continue;
+                    }
+                    else{
+                        System.out.printl("You can't get the " + itemName );
+                        System.out.println("There is not enough space in the bag");
+                        continue;
+                    }
+                    System.out.println("There is no " + itemName + " in the room");
+                }
+            }
+            */
 
-                default:
-                    System.out.println("Unknown command... try again.");
-
+            //EXIT COMMAND
+            if (input.equalsIgnoreCase("EXIT")) {
+                gameEnded = true;
             }
         }
     }
