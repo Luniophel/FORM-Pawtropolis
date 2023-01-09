@@ -2,14 +2,11 @@ package pawtropolis.game;
 
 import pawtropolis.game.console.InputController;
 
+import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Room;
 
 import pawtropolis.map.domain.Direction;
-import static pawtropolis.map.domain.Direction.*;
-
-import pawtropolis.game.domain.Action;
-import static pawtropolis.game.domain.Action.*;
 
 public class GameController {
 
@@ -25,6 +22,7 @@ public class GameController {
         Room currentRoom = entry;
 
         PlayerController playerController = new PlayerController(player);
+        RoomController roomController = new RoomController();
 
         boolean gameEnded = false;
 
@@ -41,7 +39,7 @@ public class GameController {
 
             //LOOK COMMAND
             if (input.equalsIgnoreCase("LOOK")) {
-                playerController.lookAround(currentRoom);
+                roomController.showRoomInfo(currentRoom);
                 continue;
             }
 
@@ -57,7 +55,7 @@ public class GameController {
                     Room targetRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(command[1]));
                     if (targetRoom != null) {
                         currentRoom = targetRoom;
-                        playerController.lookAround(currentRoom);
+                        roomController.showRoomInfo(currentRoom);
                         continue;
                     }
                     else{
@@ -70,25 +68,26 @@ public class GameController {
             }
 
             //GET COMMAND
-            /*
-            if ( (command.length>1) && (command[1].equalsIgnoreCase("GET")) {
+            if ( (command.length>1) && (command[0].equalsIgnoreCase("GET")) ) {
                 String itemName = InputController.joinCommand(command,1);
-                Item itemToGet = roomController.getItem(itemToGet);
+                Item itemToGet = roomController.getItemFromRoom(currentRoom, itemName);
                 if (itemToGet != null){
                     if (playerController.isThereEnoughSlotsInBag(itemToGet)){
-                        playerController.addItemtoBag(itemToGet);
-                        roomController.removeItemfromRoom(itemToGet)
+                        playerController.getBag().addItemToBag(itemToGet);
+                        roomController.removeItemfromRoom(currentRoom, itemToGet);
+                        System.out.println("You got the " + itemName + "!");
                         continue;
                     }
-                    else{
-                        System.out.printl("You can't get the " + itemName );
+                    else {
+                        System.out.println("You can't get the " + itemName );
                         System.out.println("There is not enough space in the bag");
                         continue;
                     }
+                }
+                else {
                     System.out.println("There is no " + itemName + " in the room");
                 }
             }
-            */
 
             //EXIT COMMAND
             if (input.equalsIgnoreCase("EXIT")) {

@@ -10,11 +10,6 @@ public class PlayerController {
 
     public PlayerController(Player player) { this.player = player; }
 
-    public void  lookAround(Room room){
-        System.out.println("You're in " + room.getName());
-        room.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
-    }
-
     public boolean isThereEnoughSlotsInBag(Item item){
         if (player.getPlayerBag().getAvailableSlots() >= item.getRequiredSlot())
             return true;
@@ -23,12 +18,8 @@ public class PlayerController {
         }
     }
 
-    public boolean addItemtoBag(Item item) {
-        if (isThereEnoughSlotsInBag(item)) {
-            player.getPlayerBag().getItems().add(item);
-            return true;
-        }
-        return false;
+    public Bag getBag() {
+        return player.getPlayerBag();
     }
 
     public void showBagContent(){

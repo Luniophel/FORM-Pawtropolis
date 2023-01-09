@@ -6,14 +6,24 @@ import pawtropolis.map.domain.Room;
 
 public class RoomController {
 
-    /*
-    public Item getItem(Room room, Item item){
+    public void showRoomInfo(Room room){
+        System.out.println("You're in " + room.getName());
+        room.getAdiacentRooms().forEach((k, v) -> System.out.println((k + ":" + v.getName())));
+        System.out.println("\nIn this room there are the following items:");
+
+        room.getItems().forEach(item -> System.out.println(" # " + item.getName()));
+
+
+    }
+
+    public Item getItemFromRoom(Room room, String itemName){
         for (Item roomItem : room.getItems()) {
-            return item.getName().equalsIgnoreCase(roomItem.getName());
+            if(itemName.equalsIgnoreCase(roomItem.getName())){
+                return roomItem;
             }
         }
+        return null;
     }
-    */
 
     public void removeItemfromRoom (Room room, Item item){
         room.getItems().remove(item);

@@ -24,10 +24,17 @@ public class Application {
 
         Item item01 = new Item("Bread", "lorem ipsum", 1);
         Item item02 = new Item("Meat", "lorem ipsum", 1);
+        Item item03 = new Item("Tomato sauce", "lorem ipsum", 1);
+        Item item04 = new Item("Pizza with Pineapple", "Una cosa assai brutta", 1);
+
+
 
         Collection<Item> room01Items = new ArrayList<>();
         room01Items.add(item01);
         room01Items.add(item02);
+        room01Items.add(item03);
+        room01Items.add(item04);
+
         room01.setItems(room01Items);
 
         HashMap<Direction, Room> adiacentRooms01 = new HashMap<>();

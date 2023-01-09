@@ -28,15 +28,15 @@ public class InputController {
 
     }
 
-    /*
+
     public static String joinCommand(String[] command, int position){
-        String joinedString;    //joinedString va inizializzata, altrimenti restituisce un errore nel return
-        for(String s : command){
-            joinedString=String.join(s);
+        String joinedString = null;
+        for(int i=position; i<command.length; i++){
+            joinedString = String.join(" ", command[i]);
         }
         return joinedString;
     }
-    */
+
 
     public static boolean isValidDirection(final String direction) {
         Direction[] directions= Direction.values();
