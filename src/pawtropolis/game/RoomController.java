@@ -29,8 +29,7 @@ public class RoomController {
         room.getItems().remove(item);
     }
 
-    public Room GetAdiacentRoom(Room room, String direction) {
-        return room.getAdiacentRooms().get(Direction.valueOf(direction));
+    public void addItemToRoom (Room room, Item item){
+        room.getItems().add(item);
     }
-
 }

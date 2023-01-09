@@ -18,6 +18,11 @@ public class Bag {
         availableSlots -= item.getRequiredSlot();
     }
 
+    public void removeItemFromBag(Item item){
+        items.remove(item);
+        availableSlots += item.getRequiredSlot();
+    }
+
     public int getAvailableSlots() {
         return availableSlots;
     }

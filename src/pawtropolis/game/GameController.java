@@ -89,9 +89,29 @@ public class GameController {
                 }
             }
 
+            //DROP COMMAND
+            if ( (command.length>1) && (command[0].equalsIgnoreCase("DROP")) ) {
+                String itemName = InputController.joinCommand(command, 1);
+                Item itemToDrop = playerController.getItemFromBag(itemName);
+                if (itemToDrop != null) {
+                    playerController.getBag().removeItemFromBag(itemToDrop);
+                    roomController.addItemToRoom(currentRoom, itemToDrop);
+                    System.out.println("You dropped the " + itemName + "!");
+                    continue;
+                }
+                else {
+                    System.out.println("You can't drop the " + itemName);
+                    System.out.println("There is no " + itemName + " in the bag");
+                    continue;
+                }
+            }
+
             //EXIT COMMAND
             if (input.equalsIgnoreCase("EXIT")) {
                 gameEnded = true;
+            }
+            else{
+                System.out.println("Unknown command");
             }
         }
     }

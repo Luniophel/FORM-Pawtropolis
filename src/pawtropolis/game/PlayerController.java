@@ -22,6 +22,15 @@ public class PlayerController {
         return player.getPlayerBag();
     }
 
+    public Item getItemFromBag(String itemName){
+        for(Item item : player.getPlayerBag().getItems()){
+            if (itemName.equalsIgnoreCase(item.getName())){
+                return item;
+            }
+        }
+        return null;
+    }
+
     public void showBagContent(){
         if (player.getPlayerBag().getItems().isEmpty()){
             System.out.println("Your bag is empty");
