@@ -22,13 +22,6 @@ public class InputController {
         }
     }
 
-    public static String[] splitCommand(String command){
-            String str = "abc,defg,hi,jklm";
-            return command.split(" ");
-
-    }
-
-
     public static String joinCommand(String[] command, int position){
         String joinedString = null;
         for(int i=position; i<command.length; i++){

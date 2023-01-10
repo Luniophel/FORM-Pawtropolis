@@ -3,11 +3,9 @@ package pawtropolis.game;
 import pawtropolis.game.domain.Bag;
 import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
-import pawtropolis.map.domain.Room;
 
 public class PlayerController {
     private Player player;
-
     public PlayerController(Player player) { this.player = player; }
 
     public boolean isThereEnoughSlotsInBag(Item item){

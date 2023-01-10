@@ -1,7 +1,6 @@
 package pawtropolis.game;
 
 import pawtropolis.game.domain.Item;
-import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
 public class RoomController {
