@@ -11,7 +11,7 @@ import java.util.Map;
 public class Room {
 
     private String name;
-    private Collection<Item> items;
+    private Collection<Item> items = null;
     private Collection<Animal> animals;
     private Map<Direction, Room> adiacentRooms;
 

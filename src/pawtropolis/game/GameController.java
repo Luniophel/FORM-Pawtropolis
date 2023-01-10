@@ -52,7 +52,8 @@ public class GameController {
             //GO COMMAND
             if ( (command.length>1) && (command[0].equalsIgnoreCase("GO")) ) {
                 if (InputController.isValidDirection(command[1])) {
-                    Room targetRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(command[1]));
+                    //Room targetRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(command[1]));
+                    Room targetRoom = roomController.getRoomIfPresent(currentRoom, command[1]);
                     if (targetRoom != null) {
                         currentRoom = targetRoom;
                         roomController.showRoomInfo(currentRoom);
@@ -73,7 +74,7 @@ public class GameController {
                 Item itemToGet = roomController.getItemFromRoom(currentRoom, itemName);
                 if (itemToGet != null){
                     if (playerController.isThereEnoughSlotsInBag(itemToGet)){
-                        playerController.getBag().addItemToBag(itemToGet);
+                        playerController.addItemToBag(itemToGet);
                         roomController.removeItemfromRoom(currentRoom, itemToGet);
                         System.out.println("You got the " + itemName + "!");
                         continue;
@@ -94,7 +95,7 @@ public class GameController {
                 String itemName = InputController.joinCommand(command, 1);
                 Item itemToDrop = playerController.getItemFromBag(itemName);
                 if (itemToDrop != null) {
-                    playerController.getBag().removeItemFromBag(itemToDrop);
+                    playerController.removeItemFromBag(itemToDrop);
                     roomController.addItemToRoom(currentRoom, itemToDrop);
                     System.out.println("You dropped the " + itemName + "!");
                     continue;

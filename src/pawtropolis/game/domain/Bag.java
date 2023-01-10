@@ -13,12 +13,12 @@ public class Bag {
         this.availableSlots = maxSlots;
     }
 
-    public void addItemToBag(Item item){
+    public void addItem(Item item){
         items.add(item);
         availableSlots -= item.getRequiredSlot();
     }
 
-    public void removeItemFromBag(Item item){
+    public void removeItem(Item item){
         items.remove(item);
         availableSlots += item.getRequiredSlot();
     }
