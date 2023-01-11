@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public class PlayerController {
     private Player player;
+
     public PlayerController(Player player) { this.player = player; }
 
     public boolean isThereEnoughSlotsInBag(Item item){

@@ -30,13 +30,4 @@ public class InputController {
         return joinedString;
     }
 
-
-    public static boolean isValidDirection(final String direction) {
-        Direction[] directions= Direction.values();
-        for (Direction d: directions){
-            if (d.toString().equals(direction))
-                return true;
-        }
-        return false;
-    }
 }

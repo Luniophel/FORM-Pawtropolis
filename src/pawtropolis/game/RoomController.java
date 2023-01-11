@@ -15,8 +15,8 @@ public class RoomController {
         }
     }
 
-    public Room getRoomIfPresent(Room currentRoom, String direction){
-        return currentRoom.getAdjacentRooms().get(Direction.valueOf(direction));
+    public Room getRoomIfPresent(Room currentRoom, Direction direction){
+        return currentRoom.getAdjacentRooms().get(direction);
     }
 
     public Item getItemByNameFromRoom(Room room, String itemName){

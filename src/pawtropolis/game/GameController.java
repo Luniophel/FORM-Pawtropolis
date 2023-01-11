@@ -2,8 +2,11 @@ package pawtropolis.game;
 
 import pawtropolis.game.console.InputController;
 
+import pawtropolis.game.domain.Action;
+import pawtropolis.game.domain.Bag;
 import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
+import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
 public class GameController {
@@ -19,9 +22,6 @@ public class GameController {
     public void runGame() {
         Room currentRoom = entry;
 
-        PlayerController playerController = new PlayerController(player);
-        RoomController roomController = new RoomController();
-
         boolean gameEnded = false;
 
         String input;
@@ -35,34 +35,13 @@ public class GameController {
             input = InputController.readString().toUpperCase();
             command = input.split(" ", 2);
 
-            //LOOK COMMAND
-            if (command[0].equals("LOOK")) {
-                roomController.showRoomInfo(currentRoom);
-                continue;
-            }
-
-            //BAG COMMAND
-            if (input.equalsIgnoreCase("BAG")) {
-                playerController.showBagContent();
-                continue;
-            }
-
-            //GO COMMAND
-            if ( (command.length>1) && (command[0].equalsIgnoreCase("GO")) ) {
-                if (InputController.isValidDirection(command[1])) {
-                    Room targetRoom = roomController.getRoomIfPresent(currentRoom, command[1]);
-                    if (targetRoom != null) {
-                        currentRoom = targetRoom;
-                        roomController.showRoomInfo(currentRoom);
-                        continue;
-                    }
-                    else{
-                        System.out.println("There is no room at " + command[1]);
-                        continue;
-                    }
-                }
-
-                System.out.println("Unrecognized command");
+            switch (Action.valueOf(command[0])){
+                case LOOK   -> PlayerAction.lookAround(currentRoom);
+                case BAG    -> PlayerAction.lookIntoPlayerBag(player);
+                case GO     ->
+                case GET    -> System.out.println("'GET <ItemName>' : if it's present, pick that item from the room and put it in your bag.");
+                case DROP   -> System.out.println("'DROP <ItemName>' : if it's present, pick that item from the bag and drop it in the current room.");
+                case EXIT   -> System.out.println("Close the game.");
             }
 
             //GET COMMAND
@@ -110,6 +89,34 @@ public class GameController {
             }
             else{
                 System.out.println("Unknown command");
+            }
+        }
+    }
+
+    
+    static class PlayerAction {
+
+        static PlayerController playerController = new PlayerController();
+        static RoomController roomController = new RoomController();
+
+        static void lookAround(Room room){
+            roomController.showRoomInfo(room);
+        }
+        static void lookIntoPlayerBag(Player player){
+            playerController.showBagContent();
+        }
+        static void moveFromHereToDirection(Room currentRoom, Direction direction){
+            if (Direction.contains(direction.toString())) {
+                Room targetRoom = roomController.getRoomIfPresent(currentRoom, direction);
+                if (targetRoom != null) {
+                    currentRoom = targetRoom;
+                    roomController.showRoomInfo(currentRoom);
+                }
+                else {
+                    System.out.println("There is no room at " + direction);
+                }
+            }else {
+                System.out.println("Invalid direction.");
             }
         }
     }

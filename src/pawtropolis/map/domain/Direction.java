@@ -7,5 +7,14 @@ public enum Direction {
     NORTH,
     SOUTH,
     EAST,
-    WEST
+    WEST;
+
+    public static boolean contains(String directionToCompare) {
+        for (Direction d : Direction.values()) {
+            if (d.name().equals(directionToCompare)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
