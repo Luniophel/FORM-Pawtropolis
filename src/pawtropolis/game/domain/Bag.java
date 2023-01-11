@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Bag {
-   private Collection<Item> items = new ArrayList<Item>();
+   private Collection<Item> items = new ArrayList<>();
    private int maxSlots;
    private int availableSlots;
 
@@ -37,5 +37,13 @@ public class Bag {
 
     public void setItems(Collection<Item> items) {
         this.items = items;
+    }
+
+    public int getMaxSlots() {
+        return maxSlots;
+    }
+
+    public void setMaxSlots(int maxSlots) {
+        this.maxSlots = maxSlots;
     }
 }

@@ -6,8 +6,6 @@ import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Room;
 
-import pawtropolis.map.domain.Direction;
-
 public class GameController {
 
     private final Room entry;
@@ -38,7 +36,7 @@ public class GameController {
             command = input.split(" ", 2);
 
             //LOOK COMMAND
-            if (input.equalsIgnoreCase("LOOK")) {
+            if (command[0].equals("LOOK")) {
                 roomController.showRoomInfo(currentRoom);
                 continue;
             }
@@ -52,7 +50,6 @@ public class GameController {
             //GO COMMAND
             if ( (command.length>1) && (command[0].equalsIgnoreCase("GO")) ) {
                 if (InputController.isValidDirection(command[1])) {
-                    //Room targetRoom = currentRoom.getAdiacentRooms().get(Direction.valueOf(command[1]));
                     Room targetRoom = roomController.getRoomIfPresent(currentRoom, command[1]);
                     if (targetRoom != null) {
                         currentRoom = targetRoom;
@@ -71,11 +68,11 @@ public class GameController {
             //GET COMMAND
             if ( (command.length>1) && (command[0].equalsIgnoreCase("GET")) ) {
                 String itemName = InputController.joinCommand(command,1);
-                Item itemToGet = roomController.getItemFromRoom(currentRoom, itemName);
+                Item itemToGet = roomController.getItemByNameFromRoom(currentRoom, itemName);
                 if (itemToGet != null){
                     if (playerController.isThereEnoughSlotsInBag(itemToGet)){
                         playerController.addItemToBag(itemToGet);
-                        roomController.removeItemfromRoom(currentRoom, itemToGet);
+                        roomController.removeItemFromRoom(currentRoom, itemToGet);
                         System.out.println("You got the " + itemName + "!");
                         continue;
                     }

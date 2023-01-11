@@ -25,11 +25,10 @@ public class PlayerController {
 
     public Item getItemFromBag(String itemName){
         Collection<Item> items = getBag().getItems();
-        Item item = items.stream()
+        return items.stream()
                 .filter(i -> i.getName().equalsIgnoreCase(itemName))
                 .findAny()
                 .orElse(null);
-        return item;
     }
 
     public void removeItemFromBag(Item itemToRemove){
@@ -41,14 +40,16 @@ public class PlayerController {
     }
 
     public void showBagContent(){
+        System.out.println(
+            "This bag has " + getBag().getMaxSlots() + " total slots.\n"              +
+            "There are " + getBag().getAvailableSlots() + " available slots left.\n"   +
+            "::: LIST OF ITEMS IN YOUR BAG :::"
+        );
         if (player.getPlayerBag().getItems().isEmpty()){
-            System.out.println("Your bag is empty");
+            System.out.println("Your bag is empty.");
         }
-        else{
-            System.out.println("You bag contains: ");
-            for (Item item : player.getPlayerBag().getItems()) {
-                System.out.println(item.getName() + " ");
-            }
+        else {
+            getBag().getItems().forEach(item -> System.out.println(" # " + item.getName()));
         }
     }
 }

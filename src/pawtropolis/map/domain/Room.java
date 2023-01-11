@@ -4,8 +4,6 @@ import pawtropolis.animals.domain.Animal;
 import pawtropolis.game.domain.Item;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Room {
@@ -13,7 +11,7 @@ public class Room {
     private String name;
     private Collection<Item> items = null;
     private Collection<Animal> animals;
-    private Map<Direction, Room> adiacentRooms;
+    private Map<Direction, Room> adjacentRooms;
 
     public Room(String name){
         this.name=name;
@@ -32,8 +30,8 @@ public class Room {
         this.animals = animals;
     }
 
-    public void setAdiacentRooms(Map<Direction, Room> adiacentRooms) {
-        this.adiacentRooms = adiacentRooms;
+    public void setAdjacentRooms(Map<Direction, Room> adjacentRooms) {
+        this.adjacentRooms = adjacentRooms;
     }
 
     public String getName() {
@@ -48,12 +46,8 @@ public class Room {
         return animals;
     }
 
-    public Map<Direction, Room> getAdiacentRooms() {
-        return adiacentRooms;
+    public Map<Direction, Room> getAdjacentRooms() {
+        return adjacentRooms;
     }
 
-    /*
-     * Classe per rappresentare una stanza del gioco
-     *
-     */
 }
