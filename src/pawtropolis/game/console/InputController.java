@@ -1,12 +1,13 @@
 package pawtropolis.game.console;
 
+import pawtropolis.map.domain.Direction;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InputController {
 
-    // non ci interessa istanziare questa classe, ne usiamo solo i metodi static stateless
     private InputController() {
     }
 
@@ -19,5 +20,23 @@ public class InputController {
             System.err.println("Error while reading user input");
             return "";
         }
+    }
+
+    public static String joinCommand(String[] command, int position){
+        String joinedString = null;
+        for(int i=position; i<command.length; i++){
+            joinedString = String.join(" ", command[i]);
+        }
+        return joinedString;
+    }
+
+
+    public static boolean isValidDirection(final String direction) {
+        Direction[] directions= Direction.values();
+        for (Direction d: directions){
+            if (d.toString().equals(direction))
+                return true;
+        }
+        return false;
     }
 }
