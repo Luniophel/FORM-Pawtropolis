@@ -12,6 +12,8 @@ public class RoomController {
         if (room.getItems() != null){
             System.out.println("\nIn this room there are the following items:");
             room.getItems().forEach( item -> System.out.println(" # " + item.getName()) );
+        }else{
+            System.out.println("\nIn this room there are no items.");
         }
     }
 
