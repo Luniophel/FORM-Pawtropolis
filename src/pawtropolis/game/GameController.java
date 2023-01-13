@@ -34,47 +34,47 @@ public class GameController {
             input = InputController.readString().toUpperCase();
             command = input.split(" ", 2);
             switch (Action.valueOf(command[0])) {
-                case LOOK -> roomController.showRoomInfo(currentRoom);
-                case BAG -> playerController.showBagContent();
+                case LOOK -> currentRoom.showInfo();
+                case BAG -> player.lookIntoBag();
                 case GO -> {
                     if (Direction.contains(command[1])) {
                         Direction direction = Direction.valueOf(command[1]);
-                        Room targetRoom = roomController.getRoomIfPresent(currentRoom, direction);
-                        if (targetRoom != null) {
-                            currentRoom = targetRoom;
-                            roomController.showRoomInfo(currentRoom);
-                        } else {
+                        Room targetRoom = currentRoom.getRoomIfPresent(direction);
+                        if (targetRoom == null) {
                             System.out.println("There is no room at " + direction);
+
+                        } else {
+                            currentRoom = targetRoom;
+                            currentRoom.showInfo();
                         }
                     } else {
                         System.out.println("Invalid direction.");
                     }
                 }
                 case GET -> {
-                    String itemNameToGet = InputController.joinCommand(command, 1);
-                    Item itemToGet = roomController.getItemByNameFromRoom(currentRoom, itemNameToGet);
-                    if (itemToGet != null) {
-                        if (playerController.isThereEnoughSlotsInBag(itemToGet)) {
-                            playerController.addItemToBag(itemToGet);
-                            roomController.removeItemFromRoom(currentRoom, itemToGet);
-                            System.out.println("You got the " + itemNameToGet + "!");
-                        } else {
-                            System.out.println("You can't get the " + itemNameToGet);
+                    String itemName = InputController.joinCommand(command, 1);
+                    Item itemToGet = currentRoom.getItemByName(itemName);
+                    if (itemToGet == null) {
+                        System.out.println("There is no " + itemName + " in the room");
+                    }
+                    else if (player.addItemToBag(itemToGet){
+                            currentRoom.removeItem(itemToGet);
+                            System.out.println("You got the " + itemName + "!");
+                            System.out.println("You can't get the " + itemName);
+                        }
+                        else{
                             System.out.println("There is not enough space in the bag");
                         }
-                    } else {
-                        System.out.println("There is no " + itemNameToGet + " in the room");
-                    }
                 }
                 case DROP -> {
-                    String itemNameToDrop = InputController.joinCommand(command, 1);
-                    Item itemToDrop = player.getItemByName(itemNameToDrop);
+                    String itemName = InputController.joinCommand(command, 1);
+                    Item itemToDrop = player.getItemByName(itemName);
                     if (itemToDrop == null) {
-                        System.out.println("You can't drop the " + itemNameToDrop + ":\nThere is no such item in the bag");
+                        System.out.println("You can't drop the " + itemName + ":\nThere is no such item in the bag");
                     } else {
                         player.removeItemFromBag(itemToDrop);
                         currentRoom.addItem(itemToDrop);
-                        System.out.println("You dropped the " + itemNameToDrop + "!");
+                        System.out.println("You dropped the " + itemName + "!");
                     }
                 }
                 case EXIT -> {
