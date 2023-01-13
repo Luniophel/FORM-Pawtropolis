@@ -20,9 +20,6 @@ public class GameController {
 
     public void runGame() {
 
-        PlayerController playerController = new PlayerController(player);
-        RoomController roomController = new RoomController();
-
         Room currentRoom = entry;
         boolean gameEnded = false;
 

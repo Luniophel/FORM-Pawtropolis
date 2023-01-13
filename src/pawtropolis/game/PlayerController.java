@@ -5,23 +5,14 @@ import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public class PlayerController {
     private Player player;
 
     public PlayerController(Player player) { this.player = player; }
 
-    public boolean isThereEnoughSlotsInBag(Item item){
-        if (player.getPlayerBag().getAvailableSlots() >= item.getRequiredSlot())
-            return true;
-        else{
-            return false;
-        }
-    }
-
     public Bag getBag() {
-        return player.getPlayerBag();
+        return player.getBag();
     }
 
     public Item getItemFromBag(String itemName){
@@ -46,7 +37,7 @@ public class PlayerController {
             "There are " + getBag().getAvailableSlots() + " available slots left.\n"   +
             "::: LIST OF ITEMS IN YOUR BAG :::"
         );
-        if (player.getPlayerBag().getItems().isEmpty()){
+        if (player.getBag().getItems().isEmpty()){
             System.out.println("Your bag is empty.");
         }
         else {

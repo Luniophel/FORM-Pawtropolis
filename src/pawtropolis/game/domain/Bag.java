@@ -8,6 +8,10 @@ public class Bag {
    private int maxSlots;
    private int availableSlots;
 
+    public boolean isThereEnoughSlots(Item item){
+        return (availableSlots >= item.getRequiredSlot());
+    }
+
     public Bag(int maxSlots) {
         this.maxSlots = maxSlots;
         this.availableSlots = maxSlots;
