@@ -68,14 +68,13 @@ public class GameController {
                 }
                 case DROP -> {
                     String itemNameToDrop = InputController.joinCommand(command, 1);
-                    Item itemToDrop = playerController.getItemFromBag(itemNameToDrop);
-                    if (itemToDrop != null) {
-                        playerController.removeItemFromBag(itemToDrop);
-                        roomController.addItemToRoom(currentRoom, itemToDrop);
-                        System.out.println("You dropped the " + itemNameToDrop + "!");
+                    Item itemToDrop = player.getItemByName(itemNameToDrop);
+                    if (itemToDrop == null) {
+                        System.out.println("You can't drop the " + itemNameToDrop + ":\nThere is no such item in the bag");
                     } else {
-                        System.out.println("You can't drop the " + itemNameToDrop);
-                        System.out.println("There is no " + itemNameToDrop + " in the bag");
+                        player.removeItemFromBag(itemToDrop);
+                        currentRoom.addItem(itemToDrop);
+                        System.out.println("You dropped the " + itemNameToDrop + "!");
                     }
                 }
                 case EXIT -> {

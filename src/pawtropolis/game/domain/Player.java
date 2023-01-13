@@ -17,6 +17,17 @@ public class Player {
         this.bag = bag;
     }
 
+    public Item getItemByName(String itemName){
+        return bag.getItemIfPresent(itemName);
+    }
+
+    public void removeItemFromBag(Item item){
+        bag.removeItem(item);
+    }
+
+    public void addItemToBag(Item item){
+        bag.addItem(item);
+    }
 
     //GETTER & SETTER
 
