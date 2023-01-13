@@ -12,11 +12,13 @@ public class RoomController {
         if (room.getItems() != null){
             System.out.println("\nIn this room there are the following items:");
             room.getItems().forEach( item -> System.out.println(" # " + item.getName()) );
+        }else{
+            System.out.println("\nIn this room there are no items.");
         }
     }
 
-    public Room getRoomIfPresent(Room currentRoom, String direction){
-        return currentRoom.getAdjacentRooms().get(Direction.valueOf(direction));
+    public Room getRoomIfPresent(Room currentRoom, Direction direction){
+        return currentRoom.getAdjacentRooms().get(direction);
     }
 
     public Item getItemByNameFromRoom(Room room, String itemName){
