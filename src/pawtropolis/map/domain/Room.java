@@ -35,19 +35,19 @@ public class Room {
         }
     }
 
-    public Room getRoomIfPresent(Room currentRoom, Direction direction){
-        return currentRoom.getAdjacentRooms().get(direction);
+    public Room getRoomIfPresent(Direction direction){
+        adjacentRooms.get(direction);
     }
 
-    public Item getItemByNameFromRoom(Room room, String itemName){
-        return room.getItems().stream()
+    public Item getItemByName(String itemName){
+        return items.stream()
                 .filter(i -> i.getName().equalsIgnoreCase(itemName))
                 .findAny()
                 .orElse(null);
     }
 
-    public void removeItemFromRoom(Room room, Item item){
-        room.getItems().remove(item);
+    public boolean removeItem(Item item){
+        return items.remove(item);
     }
 
     public void addItem(Item item){

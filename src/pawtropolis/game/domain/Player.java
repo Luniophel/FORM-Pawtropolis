@@ -25,10 +25,13 @@ public class Player {
         bag.removeItem(item);
     }
 
-    public void addItemToBag(Item item){
-        bag.addItem(item);
+    public boolean addItemToBag(Item item){
+        return bag.addItem(item);
     }
 
+    public void lookIntoBag(){
+        bag.showInfo();
+    }
     //GETTER & SETTER
 
     public String getName() {
