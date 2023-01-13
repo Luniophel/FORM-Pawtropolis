@@ -17,6 +17,10 @@ public class Bag {
         this.availableSlots = maxSlots;
     }
 
+    public boolean isPresent(Item item){
+        return items.stream().anyMatch(i -> i.equals(item));
+    }
+
     public Item getItemIfPresent(String itemName){
         return items.stream()
                 .filter(i -> i.getName().equalsIgnoreCase(itemName))
@@ -24,14 +28,21 @@ public class Bag {
                 .orElse(null);
     }
 
-    public void addItem(Item item){
-        items.add(item);
-        availableSlots -= item.getRequiredSlot();
+    public boolean addItem(Item item){
+        if (isThereEnoughSlots(item)){
+            items.add(item);
+            availableSlots -= item.getRequiredSlot();
+            return true;
+        }
+        return false;
     }
 
-    public void removeItem(Item item){
-        items.remove(item);
-        availableSlots += item.getRequiredSlot();
+    public Item removeItem(Item item){
+        if (items.remove(item)) {
+            availableSlots += item.getRequiredSlot();
+            return item;
+        }
+        return null;
     }
 
     //GETTER & SETTER
@@ -40,15 +51,8 @@ public class Bag {
         return availableSlots;
     }
 
-    public void setAvailableSlots(int availableSlots) {
-        this.availableSlots = availableSlots;
-    }
-
     public int getMaxSlots() {
         return maxSlots;
     }
 
-    public void setMaxSlots(int maxSlots) {
-        this.maxSlots = maxSlots;
-    }
 }
