@@ -8,42 +8,62 @@ public class Bag {
    private int maxSlots;
    private int availableSlots;
 
+    public boolean isThereEnoughSlots(Item item){
+        return (availableSlots >= item.getRequiredSlot());
+    }
+
     public Bag(int maxSlots) {
         this.maxSlots = maxSlots;
         this.availableSlots = maxSlots;
     }
 
-    public void addItem(Item item){
-        items.add(item);
-        availableSlots -= item.getRequiredSlot();
+    public boolean isPresent(Item item){
+        return items.stream().anyMatch(i -> i.equals(item));
     }
 
-    public void removeItem(Item item){
-        items.remove(item);
-        availableSlots += item.getRequiredSlot();
+    public Item getItemIfPresent(String itemName){
+        return items.stream()
+                .filter(i -> i.getName().equalsIgnoreCase(itemName))
+                .findAny()
+                .orElse(null);
     }
+
+    public boolean addItem(Item item){
+        if (isThereEnoughSlots(item)){
+            items.add(item);
+            availableSlots -= item.getRequiredSlot();
+            return true;
+        }
+        return false;
+    }
+
+    public Item removeItem(Item item){
+        if (items.remove(item)) {
+            availableSlots += item.getRequiredSlot();
+            return item;
+        }
+        return null;
+    }
+
+    public void showInfo() {
+        if (items.isEmpty()) {
+            System.out.println("The bag is empty");
+        } else {
+            System.out.println("The bag contains the following items:");
+            for (Item item : items) {
+                System.out.println(" # " + item.getName());
+            }
+        }
+    }
+
+    //GETTER & SETTER
 
     public int getAvailableSlots() {
         return availableSlots;
-    }
-
-    public void setAvailableSlots(int availableSlots) {
-        this.availableSlots = availableSlots;
-    }
-
-    public Collection<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(Collection<Item> items) {
-        this.items = items;
     }
 
     public int getMaxSlots() {
         return maxSlots;
     }
 
-    public void setMaxSlots(int maxSlots) {
-        this.maxSlots = maxSlots;
-    }
 }
