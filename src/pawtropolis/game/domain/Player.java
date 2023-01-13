@@ -2,9 +2,11 @@ package pawtropolis.game.domain;
 
 public class Player {
 
+    static final int DEFAULT_BAG_SIZE = 10;
+
     private String name;
     private int healthPoints;
-    private Bag bag = new Bag(1);
+    private Bag bag = new Bag(DEFAULT_BAG_SIZE);
 
     public Player(String name){
         this.name = name;
@@ -15,13 +17,8 @@ public class Player {
         this.bag = bag;
     }
 
-    public Bag getBag() {
-        return bag;
-    }
 
-    public void setBag(Bag bag) {
-        this.bag = bag;
-    }
+    //GETTER & SETTER
 
     public String getName() {
         return name;
