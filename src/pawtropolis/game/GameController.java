@@ -10,8 +10,11 @@ import pawtropolis.map.domain.Room;
 
 public class GameController {
 
+    //TODO Inserisci singleton appena MapController è implementato
     private final Room entry;
     private final Player player;
+
+
 
     public GameController(Room entry, Player player) {
         this.entry = entry;
@@ -32,6 +35,8 @@ public class GameController {
             System.out.print(">");
 
             input = InputController.readString().toUpperCase();
+            //Command commmand = CommandSelector.select(input);
+            //command.execute();
             command = input.split(" ", 2);
             switch (Action.valueOf(command[0])) {
                 case LOOK -> currentRoom.showInfo();

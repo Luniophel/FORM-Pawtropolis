@@ -59,6 +59,7 @@ public class Application {
         room04.setAdjacentRooms(adiacentRooms04);
 
         GameController gc = new GameController(room01, new Player("player01"));
+
         gc.runGame();
 
      }

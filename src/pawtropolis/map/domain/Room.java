@@ -1,6 +1,6 @@
 package pawtropolis.map.domain;
 
-import pawtropolis.animals.domain.Animal;
+import pawtropolis.animal.domain.Animal;
 import pawtropolis.game.domain.Item;
 
 import java.util.ArrayList;
