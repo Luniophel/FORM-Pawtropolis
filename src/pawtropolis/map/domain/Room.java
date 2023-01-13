@@ -50,8 +50,8 @@ public class Room {
         room.getItems().remove(item);
     }
 
-    public void addItemToRoom (Room room, Item item){
-        room.getItems().add(item);
+    public void addItem(Item item){
+        items.add(item);
     }
 
     //GETTER & SETTER
