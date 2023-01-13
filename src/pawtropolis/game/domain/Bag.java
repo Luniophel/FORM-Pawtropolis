@@ -45,6 +45,17 @@ public class Bag {
         return null;
     }
 
+    public void showInfo() {
+        if (items.isEmpty()) {
+            System.out.println("The bag is empty");
+        } else {
+            System.out.println("The bag contains the following items:");
+            for (Item item : items) {
+                System.out.println(" # " + item.getName());
+            }
+        }
+    }
+
     //GETTER & SETTER
 
     public int getAvailableSlots() {
