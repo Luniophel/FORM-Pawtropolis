@@ -36,7 +36,7 @@ public class Room {
     }
 
     public Room getRoomIfPresent(Direction direction){
-        adjacentRooms.get(direction);
+        return adjacentRooms.get(direction);
     }
 
     public Item getItemByName(String itemName){
