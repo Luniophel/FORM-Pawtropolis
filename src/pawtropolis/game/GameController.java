@@ -62,7 +62,8 @@ public class GameController {
                     if (itemToGet == null) {
                         System.out.println("There is no " + itemName + " in the room");
                     }
-                    else if (player.addItemToBag(itemToGet){
+                    else{
+                        if (player.addItemToBag(itemToGet)){
                             currentRoom.removeItem(itemToGet);
                             System.out.println("You got the " + itemName + "!");
                             System.out.println("You can't get the " + itemName);
@@ -70,6 +71,7 @@ public class GameController {
                         else{
                             System.out.println("There is not enough space in the bag");
                         }
+                    }
                 }
                 case DROP -> {
                     String itemName = InputController.joinCommand(command, 1);
