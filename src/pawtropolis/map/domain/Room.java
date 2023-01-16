@@ -28,10 +28,10 @@ public class Room {
         System.out.println("You're in " + name);
         adjacentRooms.forEach((k, v) -> System.out.println((k + ":" + v.getName())));
         if (items.isEmpty()){
+            System.out.println("\nIn this room there are no items.");
+        }else{
             System.out.println("\nIn this room there are the following items:");
             items.forEach( item -> System.out.println(" # " + item.getName()) );
-        }else{
-            System.out.println("\nIn this room there are no items.");
         }
     }
 
