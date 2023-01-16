@@ -44,7 +44,7 @@ public class GameController {
                 case GO -> {
                     if (Direction.contains(command[1])) {
                         Direction direction = Direction.valueOf(command[1]);
-                        Room targetRoom = currentRoom.getRoomIfPresent(direction);
+                        Room targetRoom = currentRoom.getRoomAtDirection(direction);
                         if (targetRoom == null) {
                             System.out.println("There is no room at " + direction);
 
