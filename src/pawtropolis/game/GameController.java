@@ -5,25 +5,26 @@ import pawtropolis.game.console.InputController;
 import pawtropolis.game.domain.Action;
 import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
+import pawtropolis.map.MapController;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
 public class GameController {
 
     //TODO Inserisci singleton appena MapController è implementato
-    private final Room entry;
-    private final Player player;
+    private MapController mapController;
+    private Player player;
 
 
 
-    public GameController(Room entry, Player player) {
-        this.entry = entry;
+    public GameController(Player player) {
+        this.mapController = new MapController();
         this.player = player;
     }
 
     public void runGame() {
 
-        Room currentRoom = entry;
+        Room currentRoom = mapController.getCurrentRoom();
         boolean gameEnded = false;
 
         String input;
