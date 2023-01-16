@@ -35,7 +35,23 @@ public class Room {
         }
     }
 
-    public Room getRoomIfPresent(Direction direction){
+    public void linkRoom(Room room, Direction direction){
+        if(adjacentRooms.put(direction, room) == null){
+            System.out.println("Successfully linked " + name + " with " + room.getName());
+        } else {
+            System.out.println("There is already a linked room, unlink it first!");
+        }
+    }
+
+    public void unlinkRoom(Direction direction){
+        if(adjacentRooms.remove(direction) != null){
+            System.out.println("Successfully unlinked " + name + " from the room at " + direction);
+        } else {
+            System.out.println("There isn't a room to unlink on that direction.");
+        }
+    }
+
+    public Room getRoomAtDirection(Direction direction){
         return adjacentRooms.get(direction);
     }
 
