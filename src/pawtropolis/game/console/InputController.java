@@ -5,6 +5,9 @@ import pawtropolis.map.domain.Direction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class InputController {
 
@@ -30,4 +33,16 @@ public class InputController {
         return joinedString;
     }
 
+    public static List<String> makeTokens(String input){
+        if (Predicate.not(input.isEmpty())){
+            List<String> tokens = new ArrayList<>();
+            tokens = input.split(" ");
+
+            /*for (int i=0 : input.length()){
+                tokens.add(input.split())*/
+        }
+    }
+
+
 }
+

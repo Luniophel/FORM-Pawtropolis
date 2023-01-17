@@ -1,5 +1,7 @@
 package pawtropolis.game;
 
+import pawtropolis.command.CommandFactory;
+import pawtropolis.command.domain.Command;
 import pawtropolis.game.console.InputController;
 
 import pawtropolis.game.domain.Action;
@@ -8,17 +10,21 @@ import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
+import java.util.List;
+
 public class GameController {
 
     //TODO Inserisci singleton appena MapController è implementato
     private final Room entry;
     private final Player player;
 
-
+   // private InputFormatter inputFormatter;
 
     public GameController(Room entry, Player player) {
         this.entry = entry;
         this.player = player;
+     //   this.inputFormatter = new InputFormatter();
+
     }
 
     public void runGame() {
@@ -35,11 +41,16 @@ public class GameController {
             System.out.print(">");
 
             input = InputController.readString().toUpperCase();
-            //Command commmand = CommandSelector.select(input);
-            //command.execute();
-            command = input.split(" ", 2);
-            switch (Action.valueOf(command[0])) {
-                case LOOK -> currentRoom.showInfo();
+            List<String> tokens = InputController.makeTokens(input);
+            Command command = CommandFactory.getCommandFromString(tokens.get(0));
+            command.execute(tokens);
+
+            //TODO il commento seguente è stato inserito solo per testare la classe Look (sottoclasse di Command)
+            /*command = input.split(" ", 2);
+             switch (Action.valueOf(command[0])) {
+
+
+                //case LOOK -> currentRoom.showInfo();
                 case BAG -> player.lookIntoBag();
                 case GO -> {
                     if (Direction.contains(command[1])) {
@@ -90,9 +101,13 @@ public class GameController {
                     }
                 }
                 default -> System.out.println("Unknown command");
-            }
+            }*/
 
         }
     }
 
+    //TODO eliminare questo getter quando implementi MApController, ora serve solo per testare il programma
+    public Room getEntry() {
+        return entry;
+    }
 }
