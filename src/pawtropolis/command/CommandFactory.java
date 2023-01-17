@@ -1,38 +1,39 @@
 package pawtropolis.command;
 
 import pawtropolis.command.domain.Command;
+import pawtropolis.command.domain.Look;
 import pawtropolis.game.GameController;
 import pawtropolis.game.domain.Action;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.lang.Class;
 
 public class CommandFactory {
     private Map<String, Command> commands;
-    private GameController gameController;
 
-    public CommandFactory(){
+    private static CommandFactory instance;
+
+    private CommandFactory(){
+
         this.commands = new HashMap<>();
-        this.inputFormatter = new InputFormatter();
 
-        for (Action action : Action.values()){
-            String actionToString = action.toString();
-            Class clazz = Class.forName(actionToString);
-            this.commands.put(
-                    actionToString,
-                    clazz.getConstructor(GameController.class).newInstance() );
-        }
+        commands.put("LOOK", new Look());
     }
 
-    public Command getCommandFromString(String input){
-
-
-        return commands.get(comando) ? commands.containsKey(comando) : null;
-        /*if (commands.containsKey(comando)) {
-            return commands.get(comando);
+    public static CommandFactory getInstance() {
+        if (instance == null){
+            instance = new CommandFactory();
         }
-        return null;*/
+        return instance;
     }
 
+    public Command getCommand(List<String> tokens){
+       if (commands.containsKey(tokens.get(0))) {
+           return commands.get(tokens.get(0));
+       }
+       return null;
+    }
 }

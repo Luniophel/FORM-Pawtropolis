@@ -22,7 +22,7 @@ public class GameController {
 
     public static  GameController getIstance(){
         if (instance == null){
-             return new GameController();
+             instance = new GameController();
         }
         return instance;
     }
@@ -31,13 +31,17 @@ public class GameController {
         this.mapController = new MapController();
     }
 
+    public Room getCurrentRoom(){
+       return  mapController.getCurrentRoom();
+    }
+
     public void runGame() {
 
-        Room currentRoom = mapController.getCurrentRoom();
         boolean gameEnded = false;
 
         String input;
-        String[] command;
+
+        new Player("player01");
 
         while(!gameEnded) {
 
@@ -45,8 +49,9 @@ public class GameController {
             System.out.print(">");
 
             input = InputController.readString().toUpperCase();
+
             List<String> tokens = InputController.makeTokens(input);
-            Command command = CommandFactory.getCommandFromString(tokens.get(0));
+            Command command = CommandFactory.getInstance().getCommand(tokens);
             command.execute(tokens);
 
             //TODO il commento seguente è stato inserito solo per testare la classe Look (sottoclasse di Command)
@@ -111,10 +116,5 @@ public class GameController {
             }*/
 
         }
-    }
-
-    //TODO eliminare questo getter quando implementi MApController, ora serve solo per testare il programma
-    public Room getEntry() {
-        return entry;
     }
 }

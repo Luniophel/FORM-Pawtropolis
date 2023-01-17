@@ -4,16 +4,9 @@ import pawtropolis.game.GameController;
 
 import java.util.List;
 
-public class Look {
-
-    private GameController gc;
-    public Look(GameController gc){
-        super();
-        this.gc = gc;
-    }
-
+public class Look extends Command{
     public void execute(List<String> tokens){
-        gc.getEntry().showInfo();
+        GameController.getIstance().getCurrentRoom().showInfo();
     }
 }
 
