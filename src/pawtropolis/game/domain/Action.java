@@ -1,22 +1,32 @@
 package pawtropolis.game.domain;
 
-public enum Action {
-    LOOK,
-    BAG,
-    GO,
-    GET,
-    DROP,
-    EXIT;
+import java.util.Arrays;
 
-    public void help(Action action){
-        switch (action){
-            case LOOK   -> System.out.println("Look around and find out what is there in this room.");
-            case BAG    -> System.out.println("Look into your bag to see how many slots are left.");
-            case GO     -> System.out.println("'GO <Direction>' : if possible, move to that direction.");
-            case GET    -> System.out.println("'GET <ItemName>' : if it's present, pick that item from the room and put it in your bag.");
-            case DROP   -> System.out.println("'DROP <ItemName>' : if it's present, pick that item from the bag and drop it in the current room.");
-            case EXIT   -> System.out.println("Close the game.");
-        }
+public enum Action {
+    LOOK("look"),
+    BAG("bag"),
+    GO("go"),
+    GET("get"),
+    DROP("drop"),
+    EXIT("exit"),
+    HELP("help"),
+    INVALID(null);
+
+    private String name;
+
+    Action(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Action act(String s){
+        return Arrays.stream(values())
+                        .filter(a -> s.equalsIgnoreCase(a.name))
+                        .findAny()
+                        .orElse(INVALID);
     }
 }
 
