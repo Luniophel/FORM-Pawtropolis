@@ -43,20 +43,21 @@ public class GameController {
                 case LOOK -> currentRoom.showInfo();
                 case BAG -> player.lookIntoBag();
                 case GO -> {
-                    if (Direction.contains(command[1])) {
-                        Direction direction = Direction.valueOf(command[1]);
-                        Room targetRoom = currentRoom.getRoomAtDirection(direction);
-                        if (targetRoom == null) {
-                            System.out.println("There is no room at " + direction);
+                    Direction direction = Direction.dir(command[1]);
+                    if(direction == Direction.INVALID) {
+                        System.out.println("Invalid direction");
+                        break;
+                    }
+                    Room targetRoom = currentRoom.getRoomAtDirection(direction);
+                    if (targetRoom == null) {
+                        System.out.println("There is no room at " + direction);
 
-                        } else {
-                            currentRoom = targetRoom;
-                            currentRoom.showInfo();
-                        }
                     } else {
-                        System.out.println("Invalid direction.");
+                        currentRoom = targetRoom;
+                        currentRoom.showInfo();
                     }
                 }
+
                 case GET -> {
                     String itemName = InputController.joinCommand(command, 1);
                     Item itemToGet = currentRoom.getItemByName(itemName);
