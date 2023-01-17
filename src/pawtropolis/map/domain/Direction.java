@@ -23,7 +23,7 @@ public enum Direction {
         return false;
     }
 
-    public Direction dir(String s){
+    public static Direction dir(String s){
         return Arrays.stream(values())
                 .filter(a -> s.equalsIgnoreCase(a.name))
                 .findAny()

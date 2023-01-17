@@ -22,7 +22,7 @@ public enum Action {
         return name;
     }
 
-    public Action act(String s){
+    public static Action act(String s){
         return Arrays.stream(values())
                         .filter(a -> s.equalsIgnoreCase(a.name))
                         .findAny()
