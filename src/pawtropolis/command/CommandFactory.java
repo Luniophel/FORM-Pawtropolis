@@ -12,7 +12,7 @@ import java.util.Map;
 import java.lang.Class;
 
 public class CommandFactory {
-    private Map<String, Command> commands;
+    private Map<Action, Command> commands;
 
     private static CommandFactory instance;
 
@@ -20,7 +20,7 @@ public class CommandFactory {
 
         this.commands = new HashMap<>();
 
-        commands.put("LOOK", new Look());
+        commands.put(Action.LOOK, new Look());
     }
 
     public static CommandFactory getInstance() {
@@ -31,8 +31,8 @@ public class CommandFactory {
     }
 
     public Command getCommand(List<String> tokens){
-       if (commands.containsKey(tokens.get(0))) {
-           return commands.get(tokens.get(0));
+       if (commands.containsKey(Action.act(tokens.get(0) ) ) ) {
+           return commands.get(Action.act(tokens.get(0)));
        }
        return null;
     }
