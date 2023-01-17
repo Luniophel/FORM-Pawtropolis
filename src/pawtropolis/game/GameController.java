@@ -18,14 +18,17 @@ public class GameController {
     //TODO Inserisci singleton appena MapController è implementato
     private MapController mapController;
     private Player player;
+    private static GameController instance;
 
-   // private InputFormatter inputFormatter;
+    public static  GameController getIstance(){
+        if (instance == null){
+             return new GameController();
+        }
+        return instance;
+    }
 
-    public GameController(Player player) {
+    private GameController() {
         this.mapController = new MapController();
-        this.player = player;
-     //   this.inputFormatter = new InputFormatter();
-
     }
 
     public void runGame() {
