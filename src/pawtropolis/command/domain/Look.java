@@ -6,11 +6,14 @@ import java.util.List;
 
 public class Look {
 
+    private GameController gc;
     public Look(GameController gc){
-        super(gc);
+        super();
+        this.gc = gc;
     }
+
     public void execute(List<String> tokens){
-        Command.getGc().getEntry().showInfo();
+        gc.getEntry().showInfo();
     }
 }
 

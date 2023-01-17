@@ -13,7 +13,7 @@ public abstract class Command {
 
     public abstract void execute(List<String> tokens);
 
-    public static GameController getGc() {
+    public GameController getGc() {
         return this.gc;
     }
 }

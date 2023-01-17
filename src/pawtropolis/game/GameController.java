@@ -7,6 +7,7 @@ import pawtropolis.game.console.InputController;
 import pawtropolis.game.domain.Action;
 import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
+import pawtropolis.map.MapController;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
@@ -15,13 +16,13 @@ import java.util.List;
 public class GameController {
 
     //TODO Inserisci singleton appena MapController è implementato
-    private final Room entry;
-    private final Player player;
+    private MapController mapController;
+    private Player player;
 
    // private InputFormatter inputFormatter;
 
-    public GameController(Room entry, Player player) {
-        this.entry = entry;
+    public GameController(Player player) {
+        this.mapController = new MapController();
         this.player = player;
      //   this.inputFormatter = new InputFormatter();
 
@@ -29,7 +30,7 @@ public class GameController {
 
     public void runGame() {
 
-        Room currentRoom = entry;
+        Room currentRoom = mapController.getCurrentRoom();
         boolean gameEnded = false;
 
         String input;
@@ -53,27 +54,29 @@ public class GameController {
                 //case LOOK -> currentRoom.showInfo();
                 case BAG -> player.lookIntoBag();
                 case GO -> {
-                    if (Direction.contains(command[1])) {
-                        Direction direction = Direction.valueOf(command[1]);
-                        Room targetRoom = currentRoom.getRoomIfPresent(direction);
-                        if (targetRoom == null) {
-                            System.out.println("There is no room at " + direction);
+                    Direction direction = Direction.dir(command[1]);
+                    if(direction == Direction.INVALID) {
+                        System.out.println("Invalid direction");
+                        break;
+                    }
+                    Room targetRoom = currentRoom.getRoomAtDirection(direction);
+                    if (targetRoom == null) {
+                        System.out.println("There is no room at " + direction);
 
-                        } else {
-                            currentRoom = targetRoom;
-                            currentRoom.showInfo();
-                        }
                     } else {
-                        System.out.println("Invalid direction.");
+                        currentRoom = targetRoom;
+                        currentRoom.showInfo();
                     }
                 }
+
                 case GET -> {
                     String itemName = InputController.joinCommand(command, 1);
                     Item itemToGet = currentRoom.getItemByName(itemName);
                     if (itemToGet == null) {
                         System.out.println("There is no " + itemName + " in the room");
                     }
-                    else if (player.addItemToBag(itemToGet){
+                    else{
+                        if (player.addItemToBag(itemToGet)){
                             currentRoom.removeItem(itemToGet);
                             System.out.println("You got the " + itemName + "!");
                             System.out.println("You can't get the " + itemName);
@@ -81,6 +84,7 @@ public class GameController {
                         else{
                             System.out.println("There is not enough space in the bag");
                         }
+                    }
                 }
                 case DROP -> {
                     String itemName = InputController.joinCommand(command, 1);
