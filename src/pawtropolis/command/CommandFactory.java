@@ -2,7 +2,8 @@ package pawtropolis.command;
 
 import pawtropolis.command.domain.BagCommand;
 import pawtropolis.command.domain.Command;
-import pawtropolis.command.domain.Look;
+import pawtropolis.command.domain.GoCommand;
+import pawtropolis.command.domain.LookCommand;
 import pawtropolis.game.domain.Action;
 
 import java.util.HashMap;
@@ -18,8 +19,9 @@ public class CommandFactory {
 
         this.commands = new HashMap<>();
 
-        commands.put(Action.LOOK, new Look());
+        commands.put(Action.LOOK, new LookCommand());
         commands.put(Action.BAG, new BagCommand());
+        commands.put(Action.GO, new GoCommand());
 
     }
 
