@@ -15,7 +15,6 @@ import java.util.List;
 
 public class GameController {
 
-    //TODO Inserisci singleton appena MapController è implementato
     private MapController mapController;
     private Player player;
     private static GameController instance;
@@ -29,6 +28,10 @@ public class GameController {
 
     private GameController() {
         this.mapController = new MapController();
+    }
+
+    public MapController getMapController() {
+        return mapController;
     }
 
     public Room getCurrentRoom(){
@@ -60,9 +63,6 @@ public class GameController {
             /*command = input.split(" ", 2);
              switch (Action.valueOf(command[0])) {
 
-
-                //case LOOK -> currentRoom.showInfo();
-                case BAG -> player.lookIntoBag();
                 case GO -> {
                     Direction direction = Direction.dir(command[1]);
                     if(direction == Direction.INVALID) {
