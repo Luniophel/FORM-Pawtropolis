@@ -35,13 +35,15 @@ public class GameController {
        return  mapController.getCurrentRoom();
     }
 
+    public Player getPlayer(){return player;}
+
     public void runGame() {
 
         boolean gameEnded = false;
 
         String input;
 
-        new Player("player01");
+        player = new Player("player01");
 
         while(!gameEnded) {
 
