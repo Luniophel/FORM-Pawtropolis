@@ -1,15 +1,13 @@
 package pawtropolis.command;
 
+import pawtropolis.command.domain.BagCommand;
 import pawtropolis.command.domain.Command;
 import pawtropolis.command.domain.Look;
-import pawtropolis.game.GameController;
 import pawtropolis.game.domain.Action;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.lang.Class;
 
 public class CommandFactory {
     private Map<Action, Command> commands;
@@ -21,6 +19,8 @@ public class CommandFactory {
         this.commands = new HashMap<>();
 
         commands.put(Action.LOOK, new Look());
+        commands.put(Action.BAG, new BagCommand());
+
     }
 
     public static CommandFactory getInstance() {
