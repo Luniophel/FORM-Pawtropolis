@@ -1,6 +1,7 @@
 package pawtropolis.command;
 
 import pawtropolis.command.domain.Command;
+import pawtropolis.command.domain.Get;
 import pawtropolis.command.domain.Look;
 import pawtropolis.game.GameController;
 import pawtropolis.game.domain.Action;
@@ -21,6 +22,7 @@ public class CommandFactory {
         this.commands = new HashMap<>();
 
         commands.put(Action.LOOK, new Look());
+        commands.put(Action.GET, new Get());
     }
 
     public static CommandFactory getInstance() {
