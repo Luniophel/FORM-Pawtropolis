@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputController {
 
@@ -25,9 +24,7 @@ public class InputController {
     }
 
     public static String getParameters(List<String> tokens){
-        return tokens.subList(1, (tokens.size()))
-                .stream()
-                .collect(Collectors.joining(" "));
+        return String.join(" ", tokens.subList(1, (tokens.size())));
     }
 
     public static List<String> makeTokens(String input){

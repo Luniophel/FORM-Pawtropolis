@@ -55,7 +55,7 @@ public class GameController {
         return player.addItemToBag(item);
     }
     public Item getItemFromPlayerBag(String itemName){
-        player.getItemByName(itemName);
+        return player.getItemByName(itemName);
     }
     public void removeItemFromPlayerBag(Item itemToRemove){
         player.removeItemFromBag(itemToRemove);

@@ -11,7 +11,7 @@ public class DropCommand implements Command{
     public void execute(List<String> tokens) {
 
         GameController gc = GameController.getIstance();
-        String itemName = InputController.getParameters(tokens, 1);
+        String itemName = InputController.getParameters(tokens);
         Item itemToDrop = gc.getItemFromPlayerBag(itemName);
             if (itemToDrop == null) {
                 System.out.println("You can't drop the " + itemName + ":\nThere is no such item in the bag");
