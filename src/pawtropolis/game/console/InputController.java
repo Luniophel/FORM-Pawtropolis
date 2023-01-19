@@ -31,12 +31,12 @@ public class InputController {
     }
 
     public static List<String> makeTokens(String input){
+        List<String> tokens = new ArrayList<>();
         if (!input.isEmpty()){
-            List<String> tokens = new ArrayList<>();
             tokens = Arrays.stream(input.split(" ")).toList();
-            return tokens;
+
         }
-        return null;
+        return tokens;
     }
 }
 
