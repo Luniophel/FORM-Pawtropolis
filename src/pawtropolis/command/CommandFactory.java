@@ -11,7 +11,7 @@ public class CommandFactory {
     private Map<Action, Command> commands;
 
     private static CommandFactory instance;
-    private Command invalidCommand = new InvalidCommand();
+    private Command unknownCommand = new UnknownCommand();
 
     private CommandFactory(){
 
@@ -36,6 +36,6 @@ public class CommandFactory {
        if (commands.containsKey(Action.act(tokens.get(0) ) ) ) {
            return commands.get(Action.act(tokens.get(0)));
        }
-       return invalidCommand;
+       return unknownCommand;
     }
 }
