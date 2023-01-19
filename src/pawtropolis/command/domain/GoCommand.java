@@ -7,7 +7,7 @@ import pawtropolis.map.domain.Direction;
 
 import java.util.List;
 
-public class GoCommand extends Command{
+public class GoCommand implements Command{
     GameController gc = GameController.getIstance();
     MapController mc = gc.getMapController();
 
