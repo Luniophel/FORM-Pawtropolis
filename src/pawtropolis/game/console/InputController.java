@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputController {
 
@@ -25,9 +26,11 @@ public class InputController {
 
     public static String getParameters(List<String> tokens, int position){
         String parameters = null;
-        for(int i=position; i< tokens.size(); i++){
-            parameters = String.valueOf(tokens.subList(1, (tokens.size()-1)));
-        }
+        parameters =tokens.subList(1, (tokens.size())).stream()
+                .collect(Collectors.joining(" "));
+       /* for(int i=position; i< tokens.size(); i++){
+            parameters = (tokens.subList(1, (tokens.size()-1))).toString();
+        }*/
         return parameters;
     }
 
