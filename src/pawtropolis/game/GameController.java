@@ -34,11 +34,11 @@ public class GameController {
         }
         return instance;
     }
-    
-    //TODO Rimuovere e inserire comando intermedio per mostrare le info della stanza
+
     public Room getCurrentRoom() {
         return mapController.getCurrentRoom();
     }
+
     public void showRoomInfo(){
         mapController.showCurrentRoomInfo();
     }
