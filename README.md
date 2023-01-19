@@ -22,7 +22,7 @@ Nello specifico è richiesta una versione uguale o superiore a Java 8.
 
 ## Setup
 Per aggiungere un nuovo comando in eventuali sviluppi futuri, eseguire i seguenti passi: 
-* aggiungere una nuova classe nel package src/pawtropolis/command/domain/Command.java che estenda la classe astratta Command
+* aggiungere una nuova classe nel package src/pawtropolis/command/domain/Command.java che implementi l'interfaccia Command
 * inserire in src/pawtropolis/game/domain/Action.java un nuovo valore di enumerazione che corrisponda al comando da inserire 
 * inserire nel costruttore della classe src/pawtropolis/command/CommandFactory.java una nuovas entry nella mappa commands che sia composta da Key = Valore della nuova enumerazione e Value = un'istanza della classe associata al comando aggiunta nel primo passo
 
