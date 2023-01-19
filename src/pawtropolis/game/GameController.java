@@ -56,7 +56,15 @@ public class GameController {
     public boolean addItemToPlayerBag(Item item) {
         return player.addItemToBag(item);
     }
-
+    public Item getItemFromPlayerBag(String itemName){
+        player.getItemByName(itemName);
+    }
+    public void removeItemFromPlayerBag(Item itemToRemove){
+        player.removeItemFromBag(itemToRemove);
+    }
+    public void addItemToRoom(Item itemToAdd){
+        mapController.addItemToCurrentRoom(itemToAdd);
+    };
     public void showPlayerBagContent(){
         player.lookIntoBag();
     }
