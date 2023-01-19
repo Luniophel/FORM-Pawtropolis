@@ -1,10 +1,6 @@
 package pawtropolis.command;
 
-import pawtropolis.command.domain.BagCommand;
-import pawtropolis.command.domain.Command;
-import pawtropolis.command.domain.GoCommand;
-import pawtropolis.command.domain.LookCommand;
-import pawtropolis.command.domain.GetCommand;
+import pawtropolis.command.domain.*;
 import pawtropolis.game.domain.Action;
 
 import java.util.HashMap;
@@ -15,6 +11,7 @@ public class CommandFactory {
     private Map<Action, Command> commands;
 
     private static CommandFactory instance;
+    private Command invalidCommand = new InvalidCommand();
 
     private CommandFactory(){
 
@@ -24,6 +21,7 @@ public class CommandFactory {
         commands.put(Action.BAG, new BagCommand());
         commands.put(Action.GO, new GoCommand());
         commands.put(Action.GET, new GetCommand());
+        commands.put(Action.EXIT, new ExitCommand());
     }
 
     public static CommandFactory getInstance() {
@@ -38,6 +36,6 @@ public class CommandFactory {
        if (commands.containsKey(Action.act(tokens.get(0) ) ) ) {
            return commands.get(Action.act(tokens.get(0)));
        }
-       return null;
+       return invalidCommand;
     }
 }

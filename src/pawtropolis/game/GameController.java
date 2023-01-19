@@ -7,6 +7,7 @@ import pawtropolis.game.console.InputController;
 import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
 import pawtropolis.map.MapController;
+import pawtropolis.map.domain.Room;
 
 import java.util.List;
 
@@ -14,12 +15,15 @@ public class GameController {
 
     private MapController mapController;
     private Player player;
+    boolean gameEnded = false;
     private static GameController instance;
 
     private GameController() {
         this.mapController = new MapController();
     }
-
+    public void setGameEndedToTrue(){
+        gameEnded = true;
+    }
     public MapController getMapController() {
         return mapController;
     }
@@ -29,6 +33,14 @@ public class GameController {
             instance = new GameController();
         }
         return instance;
+    }
+    
+    //TODO Rimuovere e inserire comando intermedio per mostrare le info della stanza
+    public Room getCurrentRoom() {
+        return mapController.getCurrentRoom();
+    }
+    public void showRoomInfo(){
+        mapController.showCurrentRoomInfo();
     }
 
     public Item getItemFromCurrentRoom(String itemName) {
@@ -43,10 +55,11 @@ public class GameController {
         return player.addItemToBag(item);
     }
 
-    public Player getPlayer(){return player;}
+    public void showPlayerBagContent(){
+        player.lookIntoBag();
+    }
 
     public void runGame() {
-        boolean gameEnded = false;
         String input;
         player = new Player("player01");
         while (!gameEnded) {
