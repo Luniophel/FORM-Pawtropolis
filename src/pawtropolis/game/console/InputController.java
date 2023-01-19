@@ -1,14 +1,11 @@
 package pawtropolis.game.console;
 
-import pawtropolis.map.domain.Direction;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class InputController {
 
@@ -26,12 +23,12 @@ public class InputController {
         }
     }
 
-    public static String joinCommand(String[] command, int position){
-        String joinedString = null;
-        for(int i=position; i<command.length; i++){
-            joinedString = String.join(" ", command[i]);
+    public static String getParameters(List<String> tokens, int position){
+        String parameters = null;
+        for(int i=position; i< tokens.size(); i++){
+            parameters = String.valueOf(tokens.subList(1, (tokens.size()-1)));
         }
-        return joinedString;
+        return parameters;
     }
 
     public static List<String> makeTokens(String input){
