@@ -4,7 +4,7 @@
 ## Indice dei contenuti
 * [Informazioni Generali](#Informazioni-Generali)
 * [Tecnologie utilizzate](#Tecnologie-utilizzate)
-* [Setuo](#Setup)
+* [Setup](#Setup)
 * [Avvio](#Avvio)
 
 
