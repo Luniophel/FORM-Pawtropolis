@@ -55,6 +55,10 @@ public class MapController {
         return currentRoom;
     }
 
+    public void showCurrentRoomInfo(){
+        currentRoom.showInfo();
+    }
+
     public Item getItemByItemName(String itemName){
         return currentRoom.getItem(itemName);
     }
