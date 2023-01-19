@@ -63,4 +63,8 @@ public class MapController {
     public boolean removeItem(Item item){
         return currentRoom.removeItem(item);
     }
+
+    public void addItemToCurrentRoom(Item itemToAdd){
+        currentRoom.addItem(itemToAdd);
+    }
 }
