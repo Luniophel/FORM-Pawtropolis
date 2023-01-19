@@ -55,7 +55,7 @@ public class Room {
         return adjacentRooms.get(direction);
     }
 
-    public Item getItemByName(String itemName){
+    public Item getItem(String itemName){
         return items.stream()
                 .filter(i -> i.getName().equalsIgnoreCase(itemName))
                 .findAny()
