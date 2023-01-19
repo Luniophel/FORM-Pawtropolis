@@ -15,6 +15,7 @@ public class GameController {
 
     private MapController mapController;
     private Player player;
+    boolean gameEnded = false;
     private static GameController instance;
 
     private GameController() {
@@ -22,6 +23,10 @@ public class GameController {
     }
 
     //TODO Rimuovere e inserire comando intermedio tra MapController e GameController per il movimento
+
+    public void setGameEndedToTrue(){
+        gameEnded = true;
+    }
     public MapController getMapController() {
         return mapController;
     }
@@ -37,7 +42,9 @@ public class GameController {
     public Room getCurrentRoom() {
         return mapController.getCurrentRoom();
     }
-
+    public void showRoomInfo(){
+        mapController.showCurrentRoomInfo();
+    }
     public Item getItemFromCurrentRoom(String itemName) {
         return mapController.getItemByItemName(itemName);
     }
@@ -50,10 +57,11 @@ public class GameController {
         return player.addItemToBag(item);
     }
 
-    public Player getPlayer(){return player;}
+    public void showPlayerBagContent(){
+        player.lookIntoBag();
+    }
 
     public void runGame() {
-        boolean gameEnded = false;
         String input;
         player = new Player("player01");
         while (!gameEnded) {
