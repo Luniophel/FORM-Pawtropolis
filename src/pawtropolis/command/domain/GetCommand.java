@@ -6,7 +6,7 @@ import pawtropolis.game.domain.Item;
 
 import java.util.List;
 
-public class GetCommand extends Command{
+public class GetCommand implements Command{
 
     public void execute(List<String> tokens){
         GameController gc = GameController.getIstance();
