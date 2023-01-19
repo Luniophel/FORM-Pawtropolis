@@ -11,13 +11,6 @@ public class MapController {
         currentRoom = createMap();
     }
 
-    /*
-    Viene utilizzato il pattern Creator (B crea A) poiché vengono soddisfatti i requisiti:
-        1. MapController aggrega con una composizione oggetti di tipo Room;
-        2. MapController registra la Room currentRoom;
-        3. MapController utilizza strettamente l'aggregazione di oggetti di tipo Room;
-    */
-
     private Room createMap(){
         Room entry          = new Room("Entry");
         Room hall           = new Room("Main Hall");
