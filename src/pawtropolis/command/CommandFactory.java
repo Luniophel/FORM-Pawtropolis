@@ -3,7 +3,7 @@ package pawtropolis.command;
 import pawtropolis.command.domain.*;
 import pawtropolis.game.domain.Action;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public class CommandFactory {
 
     private CommandFactory(){
 
-        this.commands = new HashMap<>();
+        this.commands = new EnumMap<>(Action.class);
 
         commands.put(Action.LOOK, new LookCommand());
         commands.put(Action.BAG, new BagCommand());
@@ -31,7 +31,6 @@ public class CommandFactory {
         return instance;
     }
 
-    //TODO Gestire l'assenza di comando ritornando un UnknownCommand al posto di null
     public Command getCommand(List<String> tokens){
        if (commands.containsKey(Action.act(tokens.get(0) ) ) ) {
            return commands.get(Action.act(tokens.get(0)));
