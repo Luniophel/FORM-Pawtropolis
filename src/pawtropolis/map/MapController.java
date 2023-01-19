@@ -22,6 +22,7 @@ public class MapController {
         Room entry          = new Room("Entry");
         Room hall           = new Room("Main Hall");
         linkRooms(entry, hall, Direction.NORTH, Direction.SOUTH);
+        entry.addItem(new Item("item", "Lorem Ipsum", 2));
 
         Room library        = new Room("Library");
         linkRooms(hall, library, Direction.EAST, Direction.WEST);
@@ -52,5 +53,13 @@ public class MapController {
 
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public Item getItemByItemName(String itemName){
+        return currentRoom.getItem(itemName);
+    }
+
+    public boolean removeItem(Item item){
+        return currentRoom.removeItem(item);
     }
 }

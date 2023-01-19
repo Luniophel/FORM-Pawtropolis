@@ -4,6 +4,7 @@ import pawtropolis.command.domain.BagCommand;
 import pawtropolis.command.domain.Command;
 import pawtropolis.command.domain.GoCommand;
 import pawtropolis.command.domain.LookCommand;
+import pawtropolis.command.domain.GetCommand;
 import pawtropolis.game.domain.Action;
 
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class CommandFactory {
         commands.put(Action.LOOK, new LookCommand());
         commands.put(Action.BAG, new BagCommand());
         commands.put(Action.GO, new GoCommand());
-
+        commands.put(Action.GET, new GetCommand());
     }
 
     public static CommandFactory getInstance() {
@@ -32,6 +33,7 @@ public class CommandFactory {
         return instance;
     }
 
+    //TODO Gestire l'assenza di comando ritornando un UnknownCommand al posto di null
     public Command getCommand(List<String> tokens){
        if (commands.containsKey(Action.act(tokens.get(0) ) ) ) {
            return commands.get(Action.act(tokens.get(0)));
