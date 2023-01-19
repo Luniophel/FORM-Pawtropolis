@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LookCommand extends Command{
     public void execute(List<String> tokens){
-        GameController.getIstance().getCurrentRoom().showInfo();
+        GameController.getIstance().showRoomInfo();
     }
 }
 
