@@ -20,7 +20,7 @@ Il giocatore può:
 Il progetto è stato implementato utilizzando il linguaggio di programmazione JAVA.
 Nello specifico è richiesta una versione uguale o superiore a Java 8.
 
-##Setup
+## Setup
 Per aggiungere un nuovo comando in eventuali sviluppi futuri, eseguire i seguenti passi: 
 * aggiungere una nuova classe nel package src/pawtropolis/command/domain/Command.java che estenda la classe astratta Command
 * inserire in src/pawtropolis/game/domain/Action.java un nuovo valore di enumerazione che corrisponda al comando da inserire 
