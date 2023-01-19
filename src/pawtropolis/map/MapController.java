@@ -51,6 +51,10 @@ public class MapController {
         currentRoom = currentRoom.getRoomAtDirection(direction);
     }
 
+    public boolean isRoomAtDirection(Direction direction){
+        return currentRoom.getAdjacentRooms().containsKey(direction);
+    }
+
     public Room getCurrentRoom() {
         return currentRoom;
     }

@@ -11,7 +11,7 @@ public class GetCommand extends Command{
     public void execute(List<String> tokens){
         GameController gc = GameController.getIstance();
 
-        String itemName = InputController.getParameters(tokens, 1);
+        String itemName = InputController.getParameters(tokens);
         Item itemToGet = gc.getItemFromCurrentRoom(itemName);
         if (itemToGet == null) {
             System.out.println("There is no " + itemName + " in the room");

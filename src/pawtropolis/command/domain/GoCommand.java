@@ -1,26 +1,27 @@
 package pawtropolis.command.domain;
 
 import pawtropolis.game.GameController;
+import pawtropolis.game.console.InputController;
+import pawtropolis.map.MapController;
 import pawtropolis.map.domain.Direction;
-import pawtropolis.map.domain.Room;
 
 import java.util.List;
 
 public class GoCommand extends Command{
+    GameController gc = GameController.getIstance();
+    MapController mc = gc.getMapController();
 
     @Override
     public void execute(List<String> tokens) {
-        Direction direction = Direction.dir(tokens.get(1));
+        Direction direction = Direction.of(InputController.getParameters(tokens));
         if(direction == Direction.INVALID) {
             System.out.println("Invalid direction");
         }
-        Room targetRoom = GameController.getIstance().getCurrentRoom().getRoomAtDirection(direction);
-        if (targetRoom == null) {
-            System.out.println("There is no room at " + direction);
-
+        if (mc.isRoomAtDirection(direction)) {
+            mc.changeRoom(direction);
+            mc.getCurrentRoom().showInfo();
         } else {
-            GameController.getIstance().getMapController().changeRoom(direction);
-            GameController.getIstance().getCurrentRoom().showInfo();
+            System.out.println("There is no room at " + direction);
         }
     }
 }

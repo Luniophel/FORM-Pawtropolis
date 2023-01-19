@@ -24,14 +24,10 @@ public class InputController {
         }
     }
 
-    public static String getParameters(List<String> tokens, int position){
-        String parameters = null;
-        parameters =tokens.subList(1, (tokens.size())).stream()
+    public static String getParameters(List<String> tokens){
+        return tokens.subList(1, (tokens.size()))
+                .stream()
                 .collect(Collectors.joining(" "));
-       /* for(int i=position; i< tokens.size(); i++){
-            parameters = (tokens.subList(1, (tokens.size()-1))).toString();
-        }*/
-        return parameters;
     }
 
     public static List<String> makeTokens(String input){

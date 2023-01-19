@@ -7,7 +7,6 @@ import pawtropolis.game.console.InputController;
 import pawtropolis.game.domain.Item;
 import pawtropolis.game.domain.Player;
 import pawtropolis.map.MapController;
-import pawtropolis.map.domain.Room;
 
 import java.util.List;
 
@@ -21,7 +20,6 @@ public class GameController {
         this.mapController = new MapController();
     }
 
-    //TODO Rimuovere e inserire comando intermedio tra MapController e GameController per il movimento
     public MapController getMapController() {
         return mapController;
     }
@@ -31,11 +29,6 @@ public class GameController {
             instance = new GameController();
         }
         return instance;
-    }
-
-    //TODO Rimuovere e inserire comando intermedio per mostrare le info della stanza
-    public Room getCurrentRoom() {
-        return mapController.getCurrentRoom();
     }
 
     public Item getItemFromCurrentRoom(String itemName) {
