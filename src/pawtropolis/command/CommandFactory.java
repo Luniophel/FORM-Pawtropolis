@@ -21,6 +21,7 @@ public class CommandFactory {
         commands.put(Action.BAG, new BagCommand());
         commands.put(Action.GO, new GoCommand());
         commands.put(Action.GET, new GetCommand());
+        commands.put(Action.DROP, new DropCommand());
         commands.put(Action.EXIT, new ExitCommand());
     }
 
