@@ -35,22 +35,15 @@ public class GameController {
         return instance;
     }
 
-    public Room getCurrentRoom() {
-        return mapController.getCurrentRoom();
-    }
-
     public void showRoomInfo(){
         mapController.showCurrentRoomInfo();
     }
-
     public Item getItemFromCurrentRoom(String itemName) {
         return mapController.getItemByItemName(itemName);
     }
-
     public boolean removeItemFromCurrentRoom(Item item) {
         return mapController.removeItem(item);
     }
-
     public boolean addItemToPlayerBag(Item item) {
         return player.addItemToBag(item);
     }

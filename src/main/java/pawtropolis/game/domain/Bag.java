@@ -3,6 +3,11 @@ package main.java.pawtropolis.game.domain;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Bag {
    private Collection<Item> items = new ArrayList<>();
    private int maxSlots;
@@ -55,15 +60,4 @@ public class Bag {
             }
         }
     }
-
-    //GETTER & SETTER
-
-    public int getAvailableSlots() {
-        return availableSlots;
-    }
-
-    public int getMaxSlots() {
-        return maxSlots;
-    }
-
 }

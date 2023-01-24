@@ -1,5 +1,10 @@
 package main.java.pawtropolis.game.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Player {
 
     static final int DEFAULT_BAG_SIZE = 10;
@@ -17,36 +22,19 @@ public class Player {
         this.bag = bag;
     }
 
-    public Item getItemByName(String itemName){
+    public Item getItemByName(String itemName) {
         return bag.getItemIfPresent(itemName);
     }
 
-    public void removeItemFromBag(Item item){
+    public void removeItemFromBag(Item item) {
         bag.removeItem(item);
     }
 
-    public boolean addItemToBag(Item item){
+    public boolean addItemToBag(Item item) {
         return bag.addItem(item);
     }
 
-    public void lookIntoBag(){
+    public void lookIntoBag() {
         bag.showInfo();
-    }
-    //GETTER & SETTER
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getHealthPoints() {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
     }
 }

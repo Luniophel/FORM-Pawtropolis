@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Room {
 
     private String name;
@@ -23,7 +27,6 @@ public class Room {
     }
 
     //METHODS
-
     public void showInfo(){
         System.out.println("You're in " + name);
         adjacentRooms.forEach((k, v) -> System.out.println((k + ":" + v.getName())));
@@ -69,27 +72,4 @@ public class Room {
     public void addItem(Item item){
         items.add(item);
     }
-
-    //GETTER & SETTER
-
-    public void setAdjacentRooms(Map<Direction, Room> adjacentRooms) {
-        this.adjacentRooms = adjacentRooms;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Collection<Item> getItems() {
-        return items;
-    }
-
-    public Collection<Animal> getAnimals() {
-        return animals;
-    }
-
-    public Map<Direction, Room> getAdjacentRooms() {
-        return adjacentRooms;
-    }
-
 }
