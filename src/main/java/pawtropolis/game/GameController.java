@@ -7,7 +7,6 @@ import main.java.pawtropolis.game.console.InputController;
 import main.java.pawtropolis.game.domain.Item;
 import main.java.pawtropolis.game.domain.Player;
 import main.java.pawtropolis.map.MapController;
-import main.java.pawtropolis.map.domain.Room;
 
 import java.util.List;
 
@@ -55,7 +54,7 @@ public class GameController {
     }
     public void addItemToRoom(Item itemToAdd){
         mapController.addItemToCurrentRoom(itemToAdd);
-    };
+    }
     public void showPlayerBagContent(){
         player.lookIntoBag();
     }
