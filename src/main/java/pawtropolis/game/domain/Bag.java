@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class Bag {
     private Collection<Item> items = new ArrayList<>();
     private int maxSlots;
