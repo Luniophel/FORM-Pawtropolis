@@ -1,5 +1,6 @@
 package pawtropolis.map.domain;
 
+import lombok.NonNull;
 import pawtropolis.animal.domain.Animal;
 import pawtropolis.game.domain.Item;
 
@@ -8,12 +9,11 @@ import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Map;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class Room {
 
+    @NonNull
     private String name;
     private Collection<Item> items;
     private Collection<Animal> animals;
