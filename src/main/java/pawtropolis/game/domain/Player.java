@@ -1,26 +1,21 @@
 package pawtropolis.game.domain;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@Setter
+@RequiredArgsConstructor
 public class Player {
 
     static final int DEFAULT_BAG_SIZE = 10;
+    static final int DEFAULT_HEALTH_POINTS = 100;
 
-    private String name;
-    private int healthPoints;
+    @NonNull
+    private final String name;
+    private int healthPoints = DEFAULT_HEALTH_POINTS;
     private Bag bag = new Bag(DEFAULT_BAG_SIZE);
 
-    public Player(String name){
-        this.name = name;
-    }
-
-    public Player(String name,Bag bag){
-        this.name = name;
-        this.bag = bag;
-    }
 
     public Item getItemByName(String itemName) {
         return bag.getItemIfPresent(itemName);
