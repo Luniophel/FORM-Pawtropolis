@@ -1,7 +1,7 @@
-package main.java.pawtropolis.map.domain;
+package pawtropolis.map.domain;
 
-import main.java.pawtropolis.animal.domain.Animal;
-import main.java.pawtropolis.game.domain.Item;
+import pawtropolis.animal.domain.Animal;
+import pawtropolis.game.domain.Item;
 
 import java.util.ArrayList;
 import java.util.Collection;

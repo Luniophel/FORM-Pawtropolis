@@ -1,6 +1,6 @@
-package main.java.pawtropolis.animal;
+package pawtropolis.animal;
 
-import main.java.pawtropolis.animal.domain.*;
+import pawtropolis.animal.domain.*;
 
 import java.util.stream.Collectors;
 import java.util.*;

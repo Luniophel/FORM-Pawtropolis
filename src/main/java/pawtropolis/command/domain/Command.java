@@ -1,4 +1,4 @@
-package main.java.pawtropolis.command.domain;
+package pawtropolis.command.domain;
 
 import java.util.List;
 

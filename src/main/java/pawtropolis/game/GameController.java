@@ -1,12 +1,12 @@
-package main.java.pawtropolis.game;
+package pawtropolis.game;
 
-import main.java.pawtropolis.command.CommandFactory;
-import main.java.pawtropolis.command.domain.Command;
-import main.java.pawtropolis.game.console.InputController;
+import pawtropolis.command.CommandFactory;
+import pawtropolis.command.domain.Command;
+import pawtropolis.game.console.InputController;
 
-import main.java.pawtropolis.game.domain.Item;
-import main.java.pawtropolis.game.domain.Player;
-import main.java.pawtropolis.map.MapController;
+import pawtropolis.game.domain.Item;
+import pawtropolis.game.domain.Player;
+import pawtropolis.map.MapController;
 
 import java.util.List;
 

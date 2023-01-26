@@ -1,4 +1,4 @@
-package main.java.pawtropolis.map.domain;
+package pawtropolis.map.domain;
 
 import java.util.Arrays;
 

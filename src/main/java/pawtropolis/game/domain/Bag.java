@@ -1,4 +1,4 @@
-package main.java.pawtropolis.game.domain;
+package pawtropolis.game.domain;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,17 +9,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Bag {
-   private Collection<Item> items = new ArrayList<>();
-   private int maxSlots;
-   private int availableSlots;
-
-    public boolean isThereEnoughSlots(Item item){
-        return (availableSlots >= item.getRequiredSlot());
-    }
+    private Collection<Item> items = new ArrayList<>();
+    private int maxSlots;
+    private int availableSlots;
 
     public Bag(int maxSlots) {
         this.maxSlots = maxSlots;
         this.availableSlots = maxSlots;
+    }
+
+    public boolean isThereEnoughSlots(Item item){
+        return (availableSlots >= item.getRequiredSlot());
     }
 
     public boolean isPresent(Item item){

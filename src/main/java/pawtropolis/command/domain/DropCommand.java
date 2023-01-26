@@ -1,8 +1,8 @@
-package main.java.pawtropolis.command.domain;
+package pawtropolis.command.domain;
 
-import main.java.pawtropolis.game.GameController;
-import main.java.pawtropolis.game.console.InputController;
-import main.java.pawtropolis.game.domain.Item;
+import pawtropolis.game.GameController;
+import pawtropolis.game.console.InputController;
+import pawtropolis.game.domain.Item;
 
 import java.util.List;
 

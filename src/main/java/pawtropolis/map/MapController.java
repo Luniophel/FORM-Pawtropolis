@@ -1,8 +1,8 @@
-package main.java.pawtropolis.map;
+package pawtropolis.map;
 
-import main.java.pawtropolis.game.domain.Item;
-import main.java.pawtropolis.map.domain.Direction;
-import main.java.pawtropolis.map.domain.Room;
+import pawtropolis.game.domain.Item;
+import pawtropolis.map.domain.Direction;
+import pawtropolis.map.domain.Room;
 
 public class MapController {
     private Room currentRoom;

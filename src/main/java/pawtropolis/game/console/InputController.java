@@ -1,4 +1,4 @@
-package main.java.pawtropolis.game.console;
+package pawtropolis.game.console;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package main.java.pawtropolis.game.domain;
+package pawtropolis.game.domain;
 
 import lombok.Getter;
 import lombok.Setter;

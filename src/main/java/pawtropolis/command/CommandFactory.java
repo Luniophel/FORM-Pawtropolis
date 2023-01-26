@@ -1,7 +1,7 @@
-package main.java.pawtropolis.command;
+package pawtropolis.command;
 
-import main.java.pawtropolis.command.domain.*;
-import main.java.pawtropolis.game.domain.Action;
+import pawtropolis.command.domain.*;
+import pawtropolis.game.domain.Action;
 
 import java.util.EnumMap;
 import java.util.List;

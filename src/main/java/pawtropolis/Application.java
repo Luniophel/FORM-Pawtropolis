@@ -1,6 +1,6 @@
-package main.java.pawtropolis;
+package pawtropolis;
 
-import main.java.pawtropolis.game.GameController;
+import pawtropolis.game.GameController;
 public class Application {
 
     public static void main(String[] args) {
