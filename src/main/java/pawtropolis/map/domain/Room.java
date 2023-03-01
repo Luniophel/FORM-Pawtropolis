@@ -1,6 +1,7 @@
 package pawtropolis.map.domain;
 
-import lombok.NonNull;
+import lombok.*;
+
 import pawtropolis.animal.domain.Animal;
 import pawtropolis.game.domain.Item;
 
@@ -8,16 +9,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Map;
-import lombok.Getter;
 
-@Getter
+@EqualsAndHashCode
+@ToString
 public class Room {
 
     @NonNull
+    @Getter
+    @Setter
     private String name;
-    private Collection<Item> items;
-    private Collection<Animal> animals;
-    private Map<Direction, Room> adjacentRooms;
+
+    private final Collection<Item> items;
+    private final Collection<Animal> animals;
+    //TODO Verificare utilità di implementazione Getter, possibile modo migliore per svolgere il compito
+    @Getter
+    private final Map<Direction, Room> adjacentRooms;
 
     public Room(String name) {
         this.name = name;
