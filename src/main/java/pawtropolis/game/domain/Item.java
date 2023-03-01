@@ -1,10 +1,13 @@
 package pawtropolis.game.domain;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.NonNull;
 
-@Getter
+@Data
 public class Item {
+  @NonNull
   private String name;
+  @NonNull
   private String description;
   private int requiredSlot;
 

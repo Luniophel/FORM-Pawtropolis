@@ -2,10 +2,9 @@ package pawtropolis.game.domain;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
+//TODO Fai costruttore
 @Getter
-@RequiredArgsConstructor
 public class Player {
 
     static final int DEFAULT_BAG_SIZE = 10;
@@ -16,6 +15,9 @@ public class Player {
     private int healthPoints = DEFAULT_HEALTH_POINTS;
     private Bag bag = new Bag(DEFAULT_BAG_SIZE);
 
+    public Player(@NonNull String name) {
+        this.name = name;
+    }
 
     public Item getItemByName(String itemName) {
         return bag.getItemIfPresent(itemName);
