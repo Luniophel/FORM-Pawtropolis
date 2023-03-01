@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class Bag {
     private Collection<Item> items = new ArrayList<>();
-    private int maxSlots;
+    private final int maxSlots;
     private int availableSlots;
 
     public Bag(int maxSlots) {
@@ -16,7 +16,7 @@ public class Bag {
         this.availableSlots = maxSlots;
     }
 
-    public boolean isThereEnoughSlots(Item item){
+    public boolean areThereEnoughSlots(Item item){
         return (availableSlots >= item.getRequiredSlot());
     }
 
@@ -32,7 +32,7 @@ public class Bag {
     }
 
     public boolean addItem(Item item){
-        if (isThereEnoughSlots(item)){
+        if (areThereEnoughSlots(item)){
             items.add(item);
             availableSlots -= item.getRequiredSlot();
             return true;
