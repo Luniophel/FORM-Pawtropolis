@@ -8,6 +8,6 @@ public class ExitCommand implements Command{
     @Override
     public void execute(List<String> tokens) {
         System.out.println(" GAME OVER.");
-        GameController.getIstance().setGameEndedToTrue();
+        GameController.getInstance().setGameEndedToTrue();
     }
 }

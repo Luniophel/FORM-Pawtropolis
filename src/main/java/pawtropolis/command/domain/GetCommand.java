@@ -9,7 +9,7 @@ import java.util.List;
 public class GetCommand implements Command{
 
     public void execute(List<String> tokens){
-        GameController gc = GameController.getIstance();
+        GameController gc = GameController.getInstance();
 
         String itemName = InputController.getParameters(tokens);
         Item itemToGet = gc.getItemFromCurrentRoom(itemName);

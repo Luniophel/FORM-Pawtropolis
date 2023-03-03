@@ -10,7 +10,7 @@ public class DropCommand implements Command{
     @Override
     public void execute(List<String> tokens) {
 
-        GameController gc = GameController.getIstance();
+        GameController gc = GameController.getInstance();
         String itemName = InputController.getParameters(tokens);
         Item itemToDrop = gc.getItemFromPlayerBag(itemName);
             if (itemToDrop == null) {
