@@ -27,7 +27,7 @@ public class GameController {
         return mapController;
     }
 
-    public static GameController getIstance() {
+    public static GameController getInstance() {
         if (instance == null) {
             instance = new GameController();
         }
