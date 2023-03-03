@@ -1,9 +1,20 @@
 package pawtropolis;
 
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import pawtropolis.game.GameController;
-public class Application {
+
+@SpringBootApplication
+public class Application implements ApplicationRunner {
 
     public static void main(String[] args) {
+        SpringApplication.run(Application.class);
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
         GameController.getIstance().runGame();
-     }
+    }
 }
