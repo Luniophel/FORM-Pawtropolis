@@ -11,7 +11,6 @@ import java.util.EnumMap;
 import java.util.Map;
 
 @EqualsAndHashCode
-@ToString
 public class Room {
 
     @NonNull
@@ -21,7 +20,7 @@ public class Room {
 
     private final Collection<Item> items;
     private final Collection<Animal> animals;
-    //TODO Verificare utilità di implementazione Getter, possibile modo migliore per svolgere il compito
+
     @Getter
     private final Map<Direction, Room> adjacentRooms;
 
