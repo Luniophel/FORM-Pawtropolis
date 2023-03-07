@@ -1,8 +1,10 @@
 package pawtropolis.command.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 import pawtropolis.game.console.InputController;
+import pawtropolis.game.domain.Player;
 import pawtropolis.map.MapController;
 import pawtropolis.map.domain.Direction;
 
@@ -10,8 +12,9 @@ import java.util.List;
 @Component
 public class GoCommand extends Command{
 
-    protected GoCommand(GameController gameController, MapController mapController) {
-        super(gameController, mapController);
+    @Autowired
+    protected GoCommand(GameController gameController, MapController mapController, Player player) {
+        super(gameController, mapController, player);
     }
 
     @Override

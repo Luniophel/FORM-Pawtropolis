@@ -2,21 +2,25 @@ package pawtropolis.game.domain;
 
 import lombok.Getter;
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-//TODO Fai costruttore
 @Getter
+@Component
 public class Player {
 
     static final int DEFAULT_BAG_SIZE = 10;
     static final int DEFAULT_HEALTH_POINTS = 100;
+    static int playerNumber = 1;
 
     @NonNull
     private final String name;
     private int healthPoints = DEFAULT_HEALTH_POINTS;
     private Bag bag = new Bag(DEFAULT_BAG_SIZE);
 
-    public Player(@NonNull String name) {
-        this.name = name;
+    @Autowired
+    public Player() {
+        name = "Player_" + playerNumber;
     }
 
     public Item getItemByName(String itemName) {
