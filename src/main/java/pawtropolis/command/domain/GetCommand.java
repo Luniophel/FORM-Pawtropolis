@@ -1,16 +1,20 @@
 package pawtropolis.command.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 import pawtropolis.game.console.InputController;
 import pawtropolis.game.domain.Item;
+import pawtropolis.map.MapController;
 
 import java.util.List;
 @Component
-public class GetCommand implements Command{
-    @Autowired
-    GameController gameController;
+public class GetCommand extends Command{
+
+    protected GetCommand(GameController gameController, MapController mapController) {
+        super(gameController, mapController);
+    }
+
+    @Override
     public void execute(List<String> tokens){
 
         String itemName = InputController.getParameters(tokens);

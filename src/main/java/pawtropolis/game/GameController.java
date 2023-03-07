@@ -16,9 +16,9 @@ import java.util.List;
 @Component
 public class GameController {
 
-    private CommandFactory commandFactory ;
-    private MapController mapController;
-    private Player player;
+    private final CommandFactory commandFactory ;
+    private final MapController mapController;
+    private final Player player;
     boolean gameEnded = false;
 
     @Autowired
@@ -27,6 +27,7 @@ public class GameController {
         this.commandFactory = commandFactory;
         this.player = new Player("player01");
     }
+
     public void setGameEndedToTrue(){
         gameEnded = true;
     }

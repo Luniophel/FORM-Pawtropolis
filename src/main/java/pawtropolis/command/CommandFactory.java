@@ -12,9 +12,8 @@ import java.util.Map;
 
 @Component
 public class CommandFactory {
-    private Map<Action, Command> commands;
+    private final Map<Action, Command> commands;
 
-    private Command unknownCommand = new UnknownCommand();
     @Autowired
     @Lazy
     private CommandFactory( LookCommand lookCommand,
@@ -22,7 +21,8 @@ public class CommandFactory {
                             GoCommand goCommand,
                             GetCommand getCommand,
                             DropCommand dropCommand,
-                            ExitCommand exitCommand){
+                            ExitCommand exitCommand,
+                            UnknownCommand unknownCommand){
 
         this.commands = new EnumMap<>(Action.class);
 
@@ -32,12 +32,13 @@ public class CommandFactory {
         commands.put(Action.GET, getCommand);
         commands.put(Action.DROP, dropCommand);
         commands.put(Action.EXIT,  exitCommand);
+        commands.put(Action.INVALID, unknownCommand);
     }
 
     public Command getCommand(List<String> tokens){
        if (commands.containsKey(Action.act(tokens.get(0) ) ) ) {
            return commands.get(Action.act(tokens.get(0)));
        }
-       return unknownCommand;
+       else throw new IllegalArgumentException("Failed to read input, restart your application");
     }
 }
