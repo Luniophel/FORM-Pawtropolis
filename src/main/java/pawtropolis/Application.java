@@ -9,8 +9,14 @@ import pawtropolis.game.GameController;
 
 @SpringBootApplication
 public class Application implements ApplicationRunner {
+
+    private GameController gameController;
+
     @Autowired
-    GameController gameController;
+    private void setGameController (GameController gameController){
+        this.gameController = gameController;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
     }
