@@ -30,7 +30,7 @@ public class CommandFactory {
         commands.put(Action.BAG, bagCommand);
         commands.put(Action.GO, goCommand);
         commands.put(Action.GET, getCommand);
-        commands.put(Action.DROP,dropCommand);
+        commands.put(Action.DROP, dropCommand);
         commands.put(Action.EXIT,  exitCommand);
     }
 

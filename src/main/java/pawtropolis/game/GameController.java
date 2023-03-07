@@ -30,9 +30,6 @@ public class GameController {
     public void setGameEndedToTrue(){
         gameEnded = true;
     }
-    public MapController getMapController() {
-        return mapController;
-    }
 
     public void showRoomInfo(){
         mapController.showCurrentRoomInfo();
@@ -43,6 +40,7 @@ public class GameController {
     public boolean removeItemFromCurrentRoom(Item item) {
         return mapController.removeItemFromCurrentRoom(item);
     }
+
     public boolean addItemToPlayerBag(Item item) {
         return player.addItemToBag(item);
     }
@@ -55,6 +53,7 @@ public class GameController {
     public void addItemToRoom(Item itemToAdd){
         mapController.addItemToCurrentRoom(itemToAdd);
     }
+
     public void showPlayerBagContent(){
         player.lookIntoBag();
     }
