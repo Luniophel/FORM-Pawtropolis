@@ -1,7 +1,10 @@
 package pawtropolis.animal.domain;
 
+import lombok.EqualsAndHashCode;
+
 import java.time.LocalDate;
 
+@EqualsAndHashCode(callSuper = true)
 public abstract class AnimalWithTail extends Animal{
 
     private double tailLength;
