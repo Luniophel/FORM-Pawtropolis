@@ -41,7 +41,7 @@ public class GameController {
         return mapController.getItemByItemName(itemName);
     }
     public boolean removeItemFromCurrentRoom(Item item) {
-        return mapController.removeItem(item);
+        return mapController.removeItemFromCurrentRoom(item);
     }
     public boolean addItemToPlayerBag(Item item) {
         return player.addItemToBag(item);

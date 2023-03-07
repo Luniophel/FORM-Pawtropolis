@@ -35,7 +35,7 @@ public class MapController {
         return currentRoom.getItem(itemName);
     }
 
-    public boolean removeItem(Item item){
+    public boolean removeItemFromCurrentRoom(Item item){
         return currentRoom.removeItem(item);
     }
 
