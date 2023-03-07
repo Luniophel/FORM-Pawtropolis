@@ -31,7 +31,7 @@ public class Room {
         this.adjacentRooms = new EnumMap<>(Direction.class);
     }
 
-    //METHODS
+    //TODO Ritornare Stringhe anziché fare System.out.print
     public void showInfo(){
         System.out.println("You're in " + name);
         adjacentRooms.forEach((k, v) -> System.out.println((k + ":" + v.getName())));
@@ -76,5 +76,9 @@ public class Room {
 
     public void addItem(Item item){
         items.add(item);
+    }
+
+    public void addAnimal(Animal animal){
+        animals.add(animal);
     }
 }

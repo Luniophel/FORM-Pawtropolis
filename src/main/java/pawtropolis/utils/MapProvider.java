@@ -1,9 +1,12 @@
 package pawtropolis.utils;
 
 import lombok.Getter;
+import pawtropolis.animal.domain.Lion;
 import pawtropolis.game.domain.Item;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
+
+import java.time.LocalDate;
 
 public class MapProvider {
 
@@ -34,6 +37,7 @@ public class MapProvider {
         Room bossOffice     = new Room("Boss Office");
         linkRooms(waitingRoom, bossOffice, Direction.NORTH, Direction.SOUTH);
         bossOffice.addItem(new Item("Floppy Disk", "A floppy disk? Really? dude wtf?", 1));
+        bossOffice.addAnimal(new Lion("Leo", "Meat", 7, LocalDate.of(2022, 1, 1), 10, 1.50,0.30 ));
 
         return entry;
     }
