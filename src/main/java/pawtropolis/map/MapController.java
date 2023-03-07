@@ -1,13 +1,17 @@
 package pawtropolis.map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.domain.Item;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
+@Component
 public class MapController {
     private Room currentRoom;
 
-    public MapController(){
+    @Autowired
+    private MapController(){
         currentRoom = createMap();
     }
 

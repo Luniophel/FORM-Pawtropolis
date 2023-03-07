@@ -1,5 +1,8 @@
 package pawtropolis.command;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 import pawtropolis.command.domain.*;
 import pawtropolis.game.domain.Action;
 
@@ -7,29 +10,28 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class CommandFactory {
     private Map<Action, Command> commands;
 
-    private static CommandFactory instance;
     private Command unknownCommand = new UnknownCommand();
-
-    private CommandFactory(){
+    @Autowired
+    @Lazy
+    private CommandFactory( LookCommand lookCommand,
+                            BagCommand bagCommand,
+                            GoCommand goCommand,
+                            GetCommand getCommand,
+                            DropCommand dropCommand,
+                            ExitCommand exitCommand){
 
         this.commands = new EnumMap<>(Action.class);
 
-        commands.put(Action.LOOK, new LookCommand());
-        commands.put(Action.BAG, new BagCommand());
-        commands.put(Action.GO, new GoCommand());
-        commands.put(Action.GET, new GetCommand());
-        commands.put(Action.DROP, new DropCommand());
-        commands.put(Action.EXIT, new ExitCommand());
-    }
-
-    public static CommandFactory getInstance() {
-        if (instance == null){
-            instance = new CommandFactory();
-        }
-        return instance;
+        commands.put(Action.LOOK, lookCommand);
+        commands.put(Action.BAG, bagCommand);
+        commands.put(Action.GO, goCommand);
+        commands.put(Action.GET, getCommand);
+        commands.put(Action.DROP,dropCommand);
+        commands.put(Action.EXIT,  exitCommand);
     }
 
     public Command getCommand(List<String> tokens){

@@ -1,5 +1,8 @@
 package pawtropolis.game;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import pawtropolis.command.CommandFactory;
 import pawtropolis.command.domain.Command;
 import pawtropolis.game.console.InputController;
@@ -10,28 +13,25 @@ import pawtropolis.map.MapController;
 
 import java.util.List;
 
+@Component
 public class GameController {
 
+    private CommandFactory commandFactory ;
     private MapController mapController;
     private Player player;
     boolean gameEnded = false;
-    private static GameController instance;
 
-    private GameController() {
-        this.mapController = new MapController();
+    @Autowired
+    private GameController(MapController mapController, CommandFactory commandFactory) {
+        this.mapController = mapController;
+        this.commandFactory = commandFactory;
+        this.player = new Player("player01");
     }
     public void setGameEndedToTrue(){
         gameEnded = true;
     }
     public MapController getMapController() {
         return mapController;
-    }
-
-    public static GameController getInstance() {
-        if (instance == null) {
-            instance = new GameController();
-        }
-        return instance;
     }
 
     public void showRoomInfo(){
@@ -61,14 +61,14 @@ public class GameController {
 
     public void runGame() {
         String input;
-        player = new Player("player01");
+
         while (!gameEnded) {
             System.out.println("Where are you going to go?");
             System.out.print(">");
 
             input = InputController.readString().toUpperCase();
             List<String> tokens = InputController.makeTokens(input);
-            Command command = CommandFactory.getInstance().getCommand(tokens);
+            Command command = commandFactory.getCommand(tokens);
             command.execute(tokens);
         }
     }

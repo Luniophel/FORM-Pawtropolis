@@ -1,15 +1,16 @@
 package pawtropolis.command.domain;
 
-import pawtropolis.game.GameController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.console.InputController;
 import pawtropolis.map.MapController;
 import pawtropolis.map.domain.Direction;
 
 import java.util.List;
-
+@Component
 public class GoCommand implements Command{
-    GameController gc = GameController.getInstance();
-    MapController mc = gc.getMapController();
+    @Autowired
+    MapController mc;
 
     @Override
     public void execute(List<String> tokens) {
