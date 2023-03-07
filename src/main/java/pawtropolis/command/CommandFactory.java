@@ -36,9 +36,12 @@ public class CommandFactory {
     }
 
     public Command getCommand(List<String> tokens){
-       if (commands.containsKey(Action.act(tokens.get(0) ) ) ) {
+        if (tokens.isEmpty()){
+            return commands.get(Action.INVALID);
+        }
+        if (commands.containsKey(Action.act(tokens.get(0)))) {
            return commands.get(Action.act(tokens.get(0)));
-       }
-       else throw new IllegalArgumentException("Failed to read input, restart your application");
+        }
+        else throw new IllegalArgumentException("Failed to read input, restart your application");
     }
 }
