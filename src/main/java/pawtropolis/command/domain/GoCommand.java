@@ -20,12 +20,12 @@ public class GoCommand extends Command{
     @Override
     public void execute(List<String> tokens) {
         Direction direction = Direction.of(InputController.getParameters(tokens));
-        if(direction == Direction.INVALID) {
+        if (direction == Direction.INVALID) {
             System.out.println("Invalid direction");
         }
         if (mapController.isRoomAtDirection(direction)) {
             mapController.changeRoom(direction);
-            mapController.getCurrentRoom().showInfo();
+            mapController.showCurrentRoomInfo();
         } else {
             System.out.println("There is no room at " + direction);
         }
