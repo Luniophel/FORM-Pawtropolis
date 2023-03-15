@@ -2,8 +2,7 @@ package pawtropolis.game;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pawtropolis.command.CommandFactory;
-import pawtropolis.command.domain.Command;
+import pawtropolis.command.CommandInvoker;
 import pawtropolis.game.console.InputController;
 
 import java.util.List;
@@ -11,12 +10,12 @@ import java.util.List;
 @Component
 public class GameController {
 
-    private final CommandFactory commandFactory ;
+    private CommandInvoker commandInvoker;
     private boolean isGameEnded = false;
 
     @Autowired
-    private GameController(CommandFactory commandFactory) {
-        this.commandFactory = commandFactory;
+    private void setCommandInvoker (CommandInvoker commandInvoker){
+        this.commandInvoker = commandInvoker;
     }
 
     public void endGame(){
@@ -32,8 +31,7 @@ public class GameController {
 
             input = InputController.readString().toUpperCase();
             List<String> tokens = InputController.makeTokens(input);
-            Command command = commandFactory.getCommand(tokens);
-            command.execute(tokens);
+            commandInvoker.executeCommand(tokens);
         }
     }
 }
