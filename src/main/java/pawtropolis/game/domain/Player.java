@@ -9,9 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Player {
 
-    static final int DEFAULT_BAG_SIZE = 10;
-    static final int DEFAULT_HEALTH_POINTS = 100;
-    static int playerNumber = 1;
+    private static final int DEFAULT_BAG_SIZE = 10;
+    private static final int DEFAULT_HEALTH_POINTS = 100;
 
     @NonNull
     private final String name;
@@ -20,7 +19,7 @@ public class Player {
 
     @Autowired
     public Player() {
-        name = "Player_" + playerNumber;
+        this.name = "Player01";
     }
 
     public Item getItemByName(String itemName) {
