@@ -9,8 +9,10 @@ import java.util.List;
 
 public class InputController {
 
-    private InputController() {
-    }
+    private static final String INPUT_DELIMITER = " ";
+    private static final String INPUT_REGEX = " ";
+
+    private InputController() {}
 
     public static String readString() {
         InputStreamReader input = new InputStreamReader(System.in);
@@ -23,16 +25,14 @@ public class InputController {
         }
     }
 
-
-    //TODO Valori default per Delimiter & Regex per eventuali riadattamenti
     public static String getParameters(List<String> tokens){
-        return String.join(" ", tokens.subList(1, (tokens.size())));
+        return String.join(INPUT_DELIMITER, tokens.subList(1, (tokens.size())));
     }
 
     public static List<String> makeTokens(String input){
         List<String> tokens = new ArrayList<>();
         if (!input.isEmpty()){
-            tokens = Arrays.stream(input.split(" ")).toList();
+            tokens = Arrays.stream(input.split(INPUT_REGEX)).toList();
         }
         return tokens;
     }
