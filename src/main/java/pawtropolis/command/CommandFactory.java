@@ -14,6 +14,7 @@ import java.util.Map;
 public class CommandFactory {
     private final Map<Action, Command> commands;
 
+    //TODO Passare l'ApplicationContext come parametro
     @Autowired
     @Lazy
     private CommandFactory( LookCommand lookCommand,
@@ -39,9 +40,9 @@ public class CommandFactory {
         if (tokens.isEmpty()){
             return commands.get(Action.INVALID);
         }
-        if (commands.containsKey(Action.act(tokens.get(0)))) {
-           return commands.get(Action.act(tokens.get(0)));
+        else {
+            String userCommandInput = tokens.get(0);
+            return commands.get(Action.act(userCommandInput));
         }
-        else throw new IllegalArgumentException("Failed to read input, restart your application");
     }
 }

@@ -23,6 +23,8 @@ public class InputController {
         }
     }
 
+
+    //TODO Valori default per Delimiter & Regex per eventuali riadattamenti
     public static String getParameters(List<String> tokens){
         return String.join(" ", tokens.subList(1, (tokens.size())));
     }
@@ -31,7 +33,6 @@ public class InputController {
         List<String> tokens = new ArrayList<>();
         if (!input.isEmpty()){
             tokens = Arrays.stream(input.split(" ")).toList();
-
         }
         return tokens;
     }

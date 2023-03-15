@@ -12,7 +12,7 @@ import java.util.List;
 public class GameController {
 
     private final CommandFactory commandFactory ;
-    private boolean endGame = false;
+    private boolean isGameEnded = false;
 
     @Autowired
     private GameController(CommandFactory commandFactory) {
@@ -20,13 +20,13 @@ public class GameController {
     }
 
     public void endGame(){
-        endGame = true;
+        isGameEnded = true;
     }
 
     public void runGame() {
         String input;
 
-        while (!endGame) {
+        while (!isGameEnded) {
             System.out.println("Where are you going to go?");
             System.out.print(">");
 
