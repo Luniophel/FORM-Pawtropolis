@@ -10,12 +10,14 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+//TODO Chiedere parere sul rename da CommandFactory a CommandProvider
+
 @Component
-public class CommandFactory {
+public class CommandProvider {
     private final Map<Action, Command> commands;
 
     @Autowired
-    private CommandFactory(ApplicationContext ctx){
+    private CommandProvider(ApplicationContext ctx){
 
         this.commands = new EnumMap<>(Action.class);
 
@@ -28,7 +30,7 @@ public class CommandFactory {
         commands.put(Action.INVALID, ctx.getBean(UnknownCommand.class));
     }
 
-    public Command getCommand(List<String> tokens){
+    protected Command getCommand(List<String> tokens){
         if (tokens.isEmpty()){
             return commands.get(Action.INVALID);
         }

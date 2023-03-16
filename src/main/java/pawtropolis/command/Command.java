@@ -1,4 +1,4 @@
-package pawtropolis.command.domain;
+package pawtropolis.command;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,5 +22,5 @@ public abstract class Command {
         this.player = player;
     }
 
-    public abstract void execute(List<String> tokens);
+    protected abstract void execute(List<String> tokens);
 }
