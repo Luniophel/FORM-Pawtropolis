@@ -18,7 +18,7 @@ public class InputController {
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader inputReader = new BufferedReader(input);
         try {
-            return inputReader.readLine();
+            return inputReader.readLine().toUpperCase();
         } catch (IOException e) {
             System.err.println("Error while reading user input");
             return "";
@@ -36,5 +36,6 @@ public class InputController {
         }
         return tokens;
     }
+
 }
 
