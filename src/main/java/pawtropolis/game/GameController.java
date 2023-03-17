@@ -8,12 +8,12 @@ import pawtropolis.game.console.InputController;
 @Component
 public class GameController {
 
-    private CommandGateway commandInvoker;
+    private final CommandGateway commandGateway;
     private boolean isGameEnded = false;
 
     @Autowired
-    private void setCommandInvoker (CommandGateway commandInvoker){
-        this.commandInvoker = commandInvoker;
+    private GameController (CommandGateway commandGateway){
+        this.commandGateway = commandGateway;
     }
 
     public void endGame(){
@@ -26,7 +26,7 @@ public class GameController {
             System.out.println("Where are you going to go?");
             System.out.print(">");
 
-            commandInvoker.executeCommand( InputController.readString() );
+            commandGateway.executeCommand( InputController.readString() );
         }
     }
 }
