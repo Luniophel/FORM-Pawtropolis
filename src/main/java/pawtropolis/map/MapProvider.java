@@ -1,4 +1,4 @@
-package pawtropolis.utils;
+package pawtropolis.map;
 
 import lombok.Getter;
 import pawtropolis.animal.domain.Lion;

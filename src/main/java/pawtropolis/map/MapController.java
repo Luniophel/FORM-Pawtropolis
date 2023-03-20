@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import pawtropolis.game.domain.Item;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
-import pawtropolis.utils.MapProvider;
 
 @Component
 public class MapController {
