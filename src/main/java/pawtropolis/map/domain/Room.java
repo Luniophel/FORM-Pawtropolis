@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @EqualsAndHashCode
 public class Room {
@@ -31,16 +32,33 @@ public class Room {
         this.adjacentRooms = new EnumMap<>(Direction.class);
     }
 
-    //TODO Ritornare Stringhe anziché fare System.out.print
-    public void showInfo(){
-        System.out.println("You're in " + name);
-        adjacentRooms.forEach((k, v) -> System.out.println((k + ":" + v.getName())));
-        if (items.isEmpty()){
-            System.out.println("\nIn this room there are no items.");
-        }else{
-            System.out.println("\nIn this room there are the following items:");
-            items.forEach( item -> System.out.println(" # " + item.getName()) );
-        }
+    public String showInfo(){
+        String roomInfo =
+                "You're in " + name + "room.\n"                                +
+                "You look around:\n\n"                                         +
+                listAllAdjacentRooms() + "\n\n" + listAllItemsInRooms() + "\n" ;
+        //TODO Togliere il print una volta aggiunta un'interfaccia grafica
+        System.out.println(roomInfo);
+        return roomInfo;
+    }
+
+    //TODO Valutare possibile implementazione di classe Utils che generalizza i metodi di listamento e stampa
+    private String listAllAdjacentRooms (){
+        return adjacentRooms.isEmpty()
+            ? "You don't see any adjacent room here.\n"
+            : "You see " + adjacentRooms.size() + " adjacent rooms:\n" +
+            adjacentRooms.entrySet().stream()
+             .map(entry -> " #" + entry.getKey().name() + ": " + entry.getValue().name)
+             .collect(Collectors.joining(";\n"));
+    }
+
+    private String listAllItemsInRooms (){
+        return items.isEmpty()
+            ? "In this room there are no items.\n"
+            : "In this room there are the following items:\n" +
+            items.stream()
+             .map(item -> " #" + item.getName())
+             .collect(Collectors.joining(";\n"));
     }
 
     public void linkRoom(Room room, Direction direction){

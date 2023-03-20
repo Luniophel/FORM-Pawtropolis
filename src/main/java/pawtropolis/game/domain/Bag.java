@@ -2,6 +2,7 @@ package pawtropolis.game.domain;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 
@@ -48,14 +49,22 @@ public class Bag {
         return null;
     }
 
-    public void showInfo() {
-        if (items.isEmpty()) {
-            System.out.println("The bag is empty");
-        } else {
-            System.out.println("The bag contains the following items:");
-            for (Item item : items) {
-                System.out.println(" # " + item.getName());
-            }
-        }
+    public String showInfo(){
+        String bagInfo =
+                "You look in your bag:\n\n"     +
+                listAllItemsInBag() + "\n"      +
+                "There are " + availableSlots   + " slots left."    ;
+        //TODO Togliere il print una volta aggiunta un'interfaccia grafica
+        System.out.println(bagInfo);
+        return bagInfo;
+    }
+
+    private String listAllItemsInBag (){
+        return items.isEmpty()
+                ? "In this bag there are no items.\n"
+                : "In this bag there are the following items:\n" +
+                items.stream()
+                        .map(item -> " #" + item.getName())
+                        .collect(Collectors.joining(";\n"));
     }
 }
