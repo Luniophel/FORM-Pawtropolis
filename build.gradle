@@ -19,6 +19,12 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '6.1.7.Final', ext: 'pom'
+
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.6.15.Final'
+
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot
     implementation 'org.springframework.boot:spring-boot:3.0.3'
 
