@@ -10,8 +10,6 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO Chiedere parere sul rename da CommandFactory a CommandProvider
-
 @Component
 public class CommandProvider {
     private final Map<Action, Command> commands;
@@ -36,7 +34,7 @@ public class CommandProvider {
         }
         else {
             String userCommandInput = tokens.get(0);
-            return commands.get(Action.act(userCommandInput));
+            return commands.get(Action.fromString(userCommandInput));
         }
     }
 }
