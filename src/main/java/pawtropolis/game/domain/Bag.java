@@ -4,13 +4,35 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.sun.istack.NotNull;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@Table(name = "Bag")
 public class Bag {
-    private Collection<Item> items = new ArrayList<>();
-    private final int maxSlots;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotNull
+    private int maxSlots;
+
+    @NotNull
     private int availableSlots;
+
+    @ManyToMany
+    @JoinTable(
+            name = "item_in_bag",
+            joinColumns = {@JoinColumn(name = "bag_id")},
+            inverseJoinColumns = {@JoinColumn(name = "item_id")}
+    )
+    private final Collection<Item> items = new ArrayList<>();
 
     public Bag(int maxSlots) {
         this.maxSlots = maxSlots;

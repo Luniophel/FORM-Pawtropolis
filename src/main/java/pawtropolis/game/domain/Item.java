@@ -1,19 +1,33 @@
 package pawtropolis.game.domain;
 
+import jakarta.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@Table(name = "Item")
 public class Item {
-  @NonNull
-  private String name;
-  @NonNull
-  private String description;
-  private int requiredSlot;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotNull
+    private String name;
+
+    @NotNull
+    private String description;
+
+    @NotNull
+    private int requiredSlot;
 
     public Item(String name, String description, int requiredSlot) {
-        this.name = name;
-        this.description = description;
-        this.requiredSlot = requiredSlot;
+    this.name = name;
+    this.description = description;
+    this.requiredSlot = requiredSlot;
     }
 }

@@ -2,9 +2,9 @@ package pawtropolis.map.domain;
 
 import lombok.*;
 
-import pawtropolis.animal.domain.Animal;
 import pawtropolis.game.domain.Item;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
@@ -12,24 +12,41 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @EqualsAndHashCode
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+@Table(name = "Room")
 public class Room {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @NonNull
     @Getter
     @Setter
     private String name;
 
-    private final Collection<Item> items;
-    private final Collection<Animal> animals;
+    @ManyToMany
+    @JoinTable(
+            name = "item_in_room",
+            joinColumns = {@JoinColumn(name = "room_id")},
+            inverseJoinColumns = {@JoinColumn(name = "item_id")}
+    )
+    private final Collection<Item> items = new ArrayList<>();
 
     @Getter
-    private final Map<Direction, Room> adjacentRooms;
+    @ManyToMany
+    @JoinTable(name="room_adjacency",
+            joinColumns = {
+                    @JoinColumn(name = "room_a_id", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "room_b_id", referencedColumnName = "id")
+            })
+    @MapKeyEnumerated(EnumType.STRING)
+    private final Map<Direction, Room> adjacentRooms = new EnumMap<>(Direction.class);
 
     public Room(String name) {
         this.name = name;
-        this.items = new ArrayList<>();
-        this.animals = new ArrayList<>();
-        this.adjacentRooms = new EnumMap<>(Direction.class);
     }
 
     public String showInfo(){
@@ -96,7 +113,4 @@ public class Room {
         items.add(item);
     }
 
-    public void addAnimal(Animal animal){
-        animals.add(animal);
-    }
 }
