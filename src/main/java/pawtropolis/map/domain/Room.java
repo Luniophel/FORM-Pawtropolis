@@ -27,11 +27,12 @@ public class Room {
     private String name;
 
     @ManyToMany
-    @JoinTable(
-            name = "item_in_room",
-            joinColumns = {@JoinColumn(name = "room_id")},
-            inverseJoinColumns = {@JoinColumn(name = "item_id")}
-    )
+    @JoinTable(name = "item_in_room",
+            joinColumns = {
+                    @JoinColumn(name = "room_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "item_id")
+            })
     private final Collection<Item> items = new ArrayList<>();
 
     @Getter
@@ -54,12 +55,10 @@ public class Room {
                 "You're in " + name + "room.\n"                                +
                 "You look around:\n\n"                                         +
                 listAllAdjacentRooms() + "\n\n" + listAllItemsInRooms() + "\n" ;
-        //TODO Togliere il print una volta aggiunta un'interfaccia grafica
         System.out.println(roomInfo);
         return roomInfo;
     }
 
-    //TODO Valutare possibile implementazione di classe Utils che generalizza i metodi di listamento e stampa
     private String listAllAdjacentRooms (){
         return adjacentRooms.isEmpty()
             ? "You don't see any adjacent room here.\n"
