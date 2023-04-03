@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @EqualsAndHashCode
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @Entity
 @Table(name = "Room")
 public class Room {
@@ -25,6 +25,14 @@ public class Room {
     @Getter
     @Setter
     private String name;
+
+    @ManyToOne
+    @JoinTable(
+            name = "map",
+            joinColumns = {@JoinColumn(name = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "id")}
+    )
+    private GameMap gameMap;
 
     @ManyToMany
     @JoinTable(name = "item_in_room",
