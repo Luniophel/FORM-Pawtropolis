@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class ItemInRoom {
 
     @EmbeddedId
-    private ItemRoomId id;
+    private ItemInRoomKey id;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
@@ -30,7 +30,7 @@ public class ItemInRoom {
 
 @Embeddable
 @EqualsAndHashCode
-class ItemRoomId implements Serializable {
+class ItemInRoomKey implements Serializable {
 
     @Column(name = "item_id")
     private Integer itemId;

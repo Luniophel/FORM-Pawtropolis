@@ -1,5 +1,7 @@
 package pawtropolis.game.domain;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,7 +10,7 @@ import java.io.Serializable;
 public class ItemInBag {
 
     @EmbeddedId
-    private ItemBagId id;
+    private ItemInBagKey id;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
@@ -26,7 +28,12 @@ public class ItemInBag {
 }
 
 @Embeddable
-class ItemBagId implements Serializable {
+@EqualsAndHashCode
+class ItemInBagKey implements Serializable {
+
+    @Column(name = "item_id")
     private Integer itemId;
+
+    @Column(name = "bag_id")
     private Integer bagId;
 }
