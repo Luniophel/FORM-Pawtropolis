@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @Entity
 @Table(name = "Room")
+//TODO Necessario refactor con adeguata referenza a GameMap nella creazione di una Room
 public class Room {
 
     @Id
@@ -48,7 +49,7 @@ public class Room {
     @MapKeyEnumerated(EnumType.STRING)
     private final Map<Direction, Room> adjacentRooms = new EnumMap<>(Direction.class);
 
-    public Room(String name) {
+    public Room(@NonNull String name) {
         this.name = name;
     }
 

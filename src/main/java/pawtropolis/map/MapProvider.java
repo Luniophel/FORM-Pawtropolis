@@ -5,13 +5,14 @@ import pawtropolis.game.domain.Item;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Room;
 
+//TODO Sostituire Creator Pattern con una Collection di Room, restituire all'esterno la EntryRoom.
 public class MapProvider {
 
     @Getter
     private static final Room MAP01 = createMap();
 
     private MapProvider(){
-        throw new IllegalStateException("This map should not be instantiated");
+        throw new IllegalStateException("This class should not be instantiated");
     }
 
     private static Room createMap(){
