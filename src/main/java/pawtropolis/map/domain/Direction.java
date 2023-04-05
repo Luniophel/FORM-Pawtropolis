@@ -29,4 +29,14 @@ public enum Direction {
                 .findAny()
                 .orElse(INVALID);
     }
+
+    public static Direction oppositeOf(Direction dir){
+        return switch (dir) {
+            case NORTH -> SOUTH;
+            case SOUTH -> NORTH;
+            case EAST -> WEST;
+            case WEST -> EAST;
+            case INVALID -> INVALID;
+        };
+    }
 }
