@@ -34,13 +34,7 @@ public class Room {
     )
     private GameMap gameMap;
 
-    @ManyToMany
-    @JoinTable(name = "item_in_room",
-            joinColumns = {
-                    @JoinColumn(name = "room_id")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "item_id")
-            })
+    @OneToMany(mappedBy = "room")
     private final Collection<Item> items = new ArrayList<>();
 
     @Getter

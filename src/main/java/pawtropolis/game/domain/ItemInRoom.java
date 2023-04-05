@@ -1,5 +1,6 @@
 package pawtropolis.game.domain;
 
+import lombok.EqualsAndHashCode;
 import pawtropolis.map.domain.Room;
 
 import javax.persistence.*;
@@ -28,7 +29,12 @@ public class ItemInRoom {
 }
 
 @Embeddable
+@EqualsAndHashCode
 class ItemRoomId implements Serializable {
+
+    @Column(name = "item_id")
     private Integer itemId;
+
+    @Column(name = "room_id")
     private Integer roomId;
 }

@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "Bag")
+@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 public class Bag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +26,7 @@ public class Bag {
     @NotNull
     private int availableSlots;
 
-    @ManyToMany
-    @JoinTable(
-            name = "item_in_bag",
-            joinColumns = {@JoinColumn(name = "bag_id")},
-            inverseJoinColumns = {@JoinColumn(name = "item_id")}
-    )
+    @OneToMany(mappedBy = "bag")
     private final Collection<Item> items = new ArrayList<>();
 
     public Bag(int maxSlots) {
