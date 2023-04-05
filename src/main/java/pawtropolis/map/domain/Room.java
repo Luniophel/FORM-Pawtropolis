@@ -1,5 +1,6 @@
 package pawtropolis.map.domain;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import pawtropolis.game.domain.Item;
@@ -12,7 +13,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @EqualsAndHashCode
-@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "Room")
 //TODO Necessario refactor con adeguata referenza a GameMap nella creazione di una Room
@@ -22,18 +23,10 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NonNull
+    @NotNull
     @Getter
     @Setter
     private String name;
-
-    @ManyToOne
-    @JoinTable(
-            name = "map",
-            joinColumns = {@JoinColumn(name = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "id")}
-    )
-    private GameMap gameMap;
 
     @OneToMany(mappedBy = "room")
     private final Collection<Item> items = new ArrayList<>();

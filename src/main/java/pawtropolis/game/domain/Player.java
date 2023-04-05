@@ -31,7 +31,7 @@ public class Player {
     @NotNull
     @OneToOne(optional = false)
     @JoinTable(
-            name = "Bag",
+            name = "bag",
             joinColumns = {@JoinColumn(name = "id")},
             inverseJoinColumns = {@JoinColumn(name = "id")}
     )
