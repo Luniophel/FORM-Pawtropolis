@@ -5,15 +5,15 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pawtropolis.persistence.JpaEntity;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "item_in_room")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Item_Room{
-
+public class Item_Room {
     @EmbeddedId
     private Item_RoomKey id;
 
@@ -35,7 +35,7 @@ public class Item_Room{
     @Getter
     @Setter
     @EqualsAndHashCode
-    static class Item_RoomKey implements JpaEntity {
+    static class Item_RoomKey implements Serializable{
 
         @Column(name = "item_id")
         private Integer itemId;
