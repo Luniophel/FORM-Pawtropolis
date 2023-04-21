@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
-import pawtropolis.persistence.JpaEntity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -15,8 +15,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Item_Bag implements JpaEntity {
-
+public class Item_Bag {
     @EmbeddedId
     private Item_BagKey id;
 
@@ -38,7 +37,7 @@ public class Item_Bag implements JpaEntity {
     @Setter
     @EqualsAndHashCode
     @Embeddable
-    static class Item_BagKey implements JpaEntity {
+    static class Item_BagKey implements Serializable{
 
         @Column(name = "item_id")
         private Integer itemId;
