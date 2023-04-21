@@ -4,29 +4,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
 @Getter
-@Entity
-@Table(name = "Bag")
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 public class Bag {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
 
-    @NotNull
     private int maxSlots;
-
-    @NotNull
     private int availableSlots;
-
-    @OneToMany(mappedBy = "bag")
     private final Collection<Item> items = new ArrayList<>();
 
     public Bag(int maxSlots) {
