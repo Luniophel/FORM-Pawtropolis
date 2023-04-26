@@ -1,11 +1,9 @@
 package pawtropolis.map.domain;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import pawtropolis.game.domain.Item;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
@@ -14,32 +12,19 @@ import java.util.stream.Collectors;
 
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
-@Table(name = "Room")
 //TODO Necessario refactor con adeguata referenza a GameMap nella creazione di una Room
 public class Room {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @NonNull
     @Getter
     @Setter
     private String name;
 
-    @OneToMany(mappedBy = "room")
     private final Collection<Item> items = new ArrayList<>();
 
     @Getter
-    @ManyToMany
-    @JoinTable(name="room_adjacency",
-            joinColumns = {
-                    @JoinColumn(name = "room_a_id", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "room_b_id", referencedColumnName = "id")
-            })
-    @MapKeyEnumerated(EnumType.STRING)
     private final Map<Direction, Room> adjacentRooms = new EnumMap<>(Direction.class);
 
     public Room(@NonNull String name) {
@@ -107,5 +92,4 @@ public class Room {
     public void addItem(Item item){
         items.add(item);
     }
-
 }
