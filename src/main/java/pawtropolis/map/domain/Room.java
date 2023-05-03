@@ -3,6 +3,7 @@ package pawtropolis.map.domain;
 import lombok.*;
 
 import pawtropolis.game.domain.Item;
+import pawtropolis.marshaller.IMarshallized;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,8 +14,10 @@ import java.util.stream.Collectors;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 //TODO Necessario refactor con adeguata referenza a GameMap nella creazione di una Room
-public class Room {
+public class Room implements IMarshallized {
 
+    @Setter
+    @Getter
     private Integer id;
 
     @NonNull

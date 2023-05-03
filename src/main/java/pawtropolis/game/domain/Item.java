@@ -4,11 +4,12 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import pawtropolis.marshaller.IMarshallized;
 
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Item {
+public class Item implements IMarshallized {
     private Integer id;
     @NonNull
     private String name;

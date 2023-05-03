@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pawtropolis.marshaller.IMarshallized;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
-public class Bag {
+public class Bag implements IMarshallized {
 
     private Integer id;
 

@@ -4,11 +4,12 @@ import lombok.Getter;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pawtropolis.marshaller.IMarshallized;
 
 
 @Getter
 @Component
-public class Player {
+public class Player implements IMarshallized {
 
     private static final int DEFAULT_BAG_SIZE = 10;
     private static final int DEFAULT_HEALTH_POINTS = 100;
