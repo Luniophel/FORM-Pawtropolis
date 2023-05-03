@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pawtropolis.marshaller.IMarshallizable;
 
 import java.util.Set;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "bag")
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
-public class BagVO{
+public class BagVO implements IMarshallizable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

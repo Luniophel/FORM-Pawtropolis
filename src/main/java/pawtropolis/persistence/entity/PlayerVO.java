@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
+import pawtropolis.marshaller.IMarshallizable;
 
 @Getter
 @Component
 @Entity
 @Table(name = "player")
-public class PlayerVO{
+public class PlayerVO implements IMarshallizable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

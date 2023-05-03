@@ -3,6 +3,7 @@ package pawtropolis.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import pawtropolis.map.domain.Direction;
+import pawtropolis.marshaller.IMarshallizable;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -13,9 +14,10 @@ import java.util.Set;
 @Entity
 @Table(name = "Room")
 //TODO Necessario refactor con adeguata referenza a GameMap nella creazione di una Room
-public class RoomVO implements Serializable {
+public class RoomVO implements Serializable, IMarshallizable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Integer id;
 
     @NonNull
@@ -24,6 +26,7 @@ public class RoomVO implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "rooms")
+    @Getter
     private Set<ItemVO> items;
 
     @Getter

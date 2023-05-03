@@ -2,6 +2,7 @@ package pawtropolis.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import pawtropolis.marshaller.IMarshallizable;
 
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "Item")
-public class ItemVO{
+public class ItemVO implements IMarshallizable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
